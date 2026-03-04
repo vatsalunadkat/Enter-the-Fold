@@ -1,22 +1,29 @@
 extends Node2D
 
+var customer1_scene = preload("res://scenes/customer.tscn")
+var customer2_scene = preload("res://scenes/customer_2.tscn")
+var customer3_scene = preload("res://scenes/customer_3.tscn")
+
 func _ready():
-	$Customer.position = $CustomerEntrance.position
-	$Customer.show()
-	await do_dropoff_visit()
+	await run_customer(customer1_scene)
+	await run_customer(customer2_scene)
+	await run_customer(customer3_scene)
 	
-	await get_tree().create_timer(2.0).timeout  # wait 2 seconds hidden
-	
-	await do_pickup_visit()
+func run_customer(scene):
+	var customer = scene.instantiate()
+	add_child(customer)
+	customer.position = $CustomerEntrance.position
 
-func do_dropoff_visit():
-	$Customer.position = $CustomerEntrance.position
-	$Customer.show()
-	$Customer.start_visit($DropOffPath)
-	await $Customer.visit_done
+	# Drop-off visit
+	customer.start_visit($DropOffPath)
+	await customer.visit_done
 
-func do_pickup_visit():
-	$Customer.position = $CustomerEntrance.position
-	$Customer.show()
-	$Customer.start_visit($PickupPath)
-	await $Customer.visit_done
+	await get_tree().create_timer(2.0).timeout
+
+	# Pickup visit
+	customer.position = $CustomerEntrance.position
+	customer.show()
+	customer.start_visit($PickupPath)
+	await customer.visit_done
+
+	customer.queue_free()

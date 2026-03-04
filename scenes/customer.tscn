@@ -116,9 +116,9 @@ script = ExtResource("1_xss0h")
 position = Vector2(2, -61)
 scale = Vector2(0.47297356, 0.48257342)
 sprite_frames = SubResource("SpriteFrames_pm32s")
-animation = &"walk_in"
+animation = &"idle"
 autoplay = "walk_in"
-frame_progress = 0.16288477
+frame_progress = 0.7020345
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1119100369]
 position = Vector2(1, -29)
