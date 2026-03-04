@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bqcjdjvqnxwnr"]
+
+[ext_resource type="Script" uid="uid://bvsnvtvrpc6oo" path="res://scenes/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cbatrb2xadtl5" path="res://scenes/customer.tscn" id="1_o5qli"]
+
+[sub_resource type="Curve2D" id="Curve2D_o5qli"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 64, 80, 0, 0, 0, 0, 64, 160, 0, 0, 0, 0, 656, 152)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_0wfyh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 6, 78, 0, 0, 0, 0, 8, 80, 0, 0, 0, 0, 64, 80, 0, 0, 0, 0, 64, 344, 0, 0, 0, 0, 648, 344)
+}
+point_count = 5
+
+[node name="Main" type="Node2D" unique_id=602522896]
+script = ExtResource("1_0wfyh")
+
+[node name="Customer" parent="." unique_id=99320947 instance=ExtResource("1_o5qli")]
+position = Vector2(8, 80)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=28704020]
+position = Vector2(306, 128)
+
+[node name="DropOffPath" type="Path2D" parent="." unique_id=468333407]
+curve = SubResource("Curve2D_o5qli")
+
+[node name="PickupPath" type="Path2D" parent="." unique_id=2050599268]
+curve = SubResource("Curve2D_0wfyh")
+
+[node name="CustomerEntrance" type="Marker2D" parent="." unique_id=1977274782]
+position = Vector2(2, 80)
+
+[node name="DropOffPoint" type="Marker2D" parent="." unique_id=213556321]
+position = Vector2(656, 152)
+
+[node name="PickupCounter" type="Marker2D" parent="." unique_id=322841726]
+position = Vector2(654, 338)
