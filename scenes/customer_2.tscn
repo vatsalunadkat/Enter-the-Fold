@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://dlycwgfqrxtsn"]
+
+[ext_resource type="Script" uid="uid://cy6dk5mq7x0kv" path="res://scripts/customer_2.gd" id="1_b6kk4"]
+[ext_resource type="Texture2D" uid="uid://bvah1r2v0kc4l" path="res://assets/kenney_toon-characters-1/Male person/Tilesheet/character_malePerson_sheetHD.png" id="2_eu6gr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2brh"]
+atlas = ExtResource("2_eu6gr")
+region = Rect2(0, 0, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn4c7"]
+atlas = ExtResource("2_eu6gr")
+region = Rect2(384, 256, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vejd"]
+atlas = ExtResource("2_eu6gr")
+region = Rect2(0, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws0vm"]
+atlas = ExtResource("2_eu6gr")
+region = Rect2(192, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhr3r"]
+atlas = ExtResource("2_eu6gr")
+region = Rect2(384, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t53lx"]
+atlas = ExtResource("2_eu6gr")
+region = Rect2(576, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi2kj"]
+atlas = ExtResource("2_eu6gr")
+region = Rect2(768, 1024, 192, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cibgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2brh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn4c7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vejd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhr3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t53lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi2kj")
+}],
+"loop": true,
+"name": &"walk_in",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vejd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhr3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t53lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi2kj")
+}],
+"loop": true,
+"name": &"walk_out",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfdas"]
+radius = 29.0
+
+[node name="Customer_2" type="CharacterBody2D" unique_id=1850352826]
+script = ExtResource("1_b6kk4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=973272879]
+z_index = 1
+position = Vector2(1.7500035, -50.875004)
+scale = Vector2(0.4609375, 0.40722653)
+sprite_frames = SubResource("SpriteFrames_cibgq")
+animation = &"walk_out"
+autoplay = "walk_in"
+frame_progress = 0.9978474
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=226883727]
+position = Vector2(0, -26)
+shape = SubResource("CircleShape2D_mfdas")

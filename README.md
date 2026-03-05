@@ -87,3 +87,5 @@ The game is being developed incrementally, with the following milestones planned
 
 The current focus is on milestones 1–3: a single-level base game where a customer appears, drops off laundry, the player types through the full service loop, and earns money.
 ---
+
+TEST
