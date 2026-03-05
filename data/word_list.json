@@ -1,0 +1,17 @@
+{
+  "letters": [
+	"a","b","c","d","e","f","g","h","i","j","k","l","m",
+	"n","o","p","q","r","s","t","u","v","w","x","y","z"
+  ],
+  "easy": [
+	"cat","dog","sun","tree","fish","book","milk","star","rock","blue"
+  ],
+  "medium": [
+	"planet","silver","forest","castle","rocket",
+	"garden","hunter","yellow","bridge","shadow"
+  ],
+  "hard": [
+	"galaxy","phantom","quantum","mystery","explorer",
+	"velocity","dynamics","strategy","triangle","absolute"
+  ]
+}

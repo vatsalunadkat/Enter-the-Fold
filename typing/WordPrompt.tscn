@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dfkif1avl5r5h"]
+
+[ext_resource type="Script" uid="uid://cjdntwe5ne7w4" path="res://typing/WordPrompt.gd" id="1_1nuxw"]
+
+[node name="WordPrompt" type="Node2D" unique_id=762864750]
+script = ExtResource("1_1nuxw")
+
+[node name="WordLabel" type="RichTextLabel" parent="." unique_id=2120273592]
+custom_minimum_size = Vector2(400, 100)
+offset_left = -207.0
+offset_top = -90.0
+offset_right = 193.0
+offset_bottom = 84.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
