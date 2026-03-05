@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://u4u1ectoh5nh"]
+
+[ext_resource type="Script" uid="uid://d1po0tngamr2p" path="res://scripts/game_state_controller.gd" id="1_vq0e2"]
+[ext_resource type="PackedScene" uid="uid://cktdqjmp0yejp" path="res://scenes/canvas_layer.tscn" id="2_ts4rt"]
+
+[node name="GameStateController" type="Node2D" unique_id=409876603]
+script = ExtResource("1_vq0e2")
+
+[node name="CanvasLayer" parent="." unique_id=952911553 instance=ExtResource("2_ts4rt")]
+
+[node name="Timer" type="Timer" parent="." unique_id=151863445]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
