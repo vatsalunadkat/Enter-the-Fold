@@ -88,4 +88,41 @@ The game is being developed incrementally, with the following milestones planned
 The current focus is on milestones 1–3: a single-level base game where a customer appears, drops off laundry, the player types through the full service loop, and earns money.
 ---
 
-TEST
+## LaundryStore Scene Node Structure
+
+The primary in-game scene (LaundryStore.tscn) is structured as follows:
+
+LaundryStore (Node2D)          - Root node
+  ├── TileMap                  - Environment tiles (floor, walls, assets)
+  ├── Player                   - Player character
+  │     └── Camera2D           - Follows player during gameplay
+  └── Markers (Node2D)         - Spatial anchor points for backend state machine
+        ├── CustomerEntrance   - Where the customer spawns/enters
+        ├── DropOffPoint       - Where customer drops off laundry
+        ├── MachineSlot_1      - Position of washing machine 1
+        ├── ShelfSlot_1        - Laundry shelf position
+        ├── PickupCounter      - Where customer is served at the end
+        └── CameraRoot         - Camera anchor reference point
+
+Target resolution: 1920x1080 landscape
+
+### Design Decisions
+
+**Assets over ColourRects**
+Open source assets were used directly in the TileMap rather than ColourRect
+placeholders. Since assets were already available, this provided a clearer
+visual representation of the laundry store layout from the start.
+
+**Camera2D placement**
+Camera2D is intentionally kept under the Player node so it follows the player
+during gameplay. CameraRoot exists as a spatial reference point for future use.
+A dedicated camera follow script with smoothing is planned for a future Sprint.
+
+### Next Sprint Plans
+- Convert TileMap to TileMapLayer (deprecation fix)
+- Implement a camera follow script with smoothing, anchored to CameraRoot
+- Refine Marker2D positions once final asset layout is confirmed
+- Begin wiring up backend state machine references to named markers
+- Investigate portrait mode (1080x1920) layout — requires repositioning TileMap,
+  Marker2D nodes, and Camera2D to fit the taller viewport. Group decided the game
+  will use portrait mode with a custom on-screen keyboard.
