@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cktdqjmp0yejp"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=952911553]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=429254606]
+offset_left = -1.0
+offset_right = 579.0
+offset_bottom = 643.0
+bbcode_enabled = true
+text = "[font_size=18]"
+
+[node name="Camera2D" type="Camera2D" parent="RichTextLabel" unique_id=1092576627]
+position = Vector2(1, -1)

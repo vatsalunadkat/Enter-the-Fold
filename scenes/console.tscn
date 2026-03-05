@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://chcoosaibgjr7"]
+
+[node name="RichTextLabel" type="RichTextLabel" unique_id=1696498699]
+offset_left = -68.0
+offset_top = -106.0
+offset_right = 71.0
+offset_bottom = 91.0
+bbcode_enabled = true
+text = "[font_size=12][center] Hallå [/center]"
