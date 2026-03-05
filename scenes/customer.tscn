@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbatrb2xadtl5"]
 
-[ext_resource type="Texture2D" uid="uid://cqtf85ho2x6gt" path="res://kenney_toon-characters-1/Female person/Tilesheet/character_femalePerson_sheetHD.png" id="1_ktfjk"]
-[ext_resource type="Script" uid="uid://3bxx3adf4vce" path="res://scenes/customer.gd" id="1_xss0h"]
+[ext_resource type="Texture2D" uid="uid://cqtf85ho2x6gt" path="res://assets/kenney_toon-characters-1/Female person/Tilesheet/character_femalePerson_sheetHD.png" id="1_ktfjk"]
+[ext_resource type="Script" uid="uid://3bxx3adf4vce" path="res://scripts/customer.gd" id="1_xss0h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktfjk"]
 atlas = ExtResource("1_ktfjk")

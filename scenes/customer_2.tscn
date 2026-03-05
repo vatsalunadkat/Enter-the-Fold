@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dlycwgfqrxtsn"]
 
-[ext_resource type="Script" uid="uid://cy6dk5mq7x0kv" path="res://scenes/customer_2.gd" id="1_b6kk4"]
-[ext_resource type="Texture2D" uid="uid://bvah1r2v0kc4l" path="res://kenney_toon-characters-1/Male person/Tilesheet/character_malePerson_sheetHD.png" id="2_eu6gr"]
+[ext_resource type="Script" uid="uid://cy6dk5mq7x0kv" path="res://scripts/customer_2.gd" id="1_b6kk4"]
+[ext_resource type="Texture2D" uid="uid://bvah1r2v0kc4l" path="res://assets/kenney_toon-characters-1/Male person/Tilesheet/character_malePerson_sheetHD.png" id="2_eu6gr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2brh"]
 atlas = ExtResource("2_eu6gr")
@@ -93,13 +93,13 @@ script = ExtResource("1_b6kk4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=973272879]
 z_index = 1
-position = Vector2(0, -47)
-scale = Vector2(0.44270828, 0.37695313)
+position = Vector2(1.7500035, -50.875004)
+scale = Vector2(0.4609375, 0.40722653)
 sprite_frames = SubResource("SpriteFrames_cibgq")
 animation = &"walk_out"
 autoplay = "walk_in"
 frame_progress = 0.9978474
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=226883727]
-position = Vector2(-1, -26)
+position = Vector2(0, -26)
 shape = SubResource("CircleShape2D_mfdas")

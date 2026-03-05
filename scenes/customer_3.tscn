@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjt2qd8psmsqd"]
 
-[ext_resource type="Script" uid="uid://c3jgfwo1roojm" path="res://scenes/customer_3.gd" id="1_n18l1"]
-[ext_resource type="Texture2D" uid="uid://6wovwvstf4p5" path="res://kenney_toon-characters-1/Female adventurer/Vector/character_femaleAdventurer.svg" id="1_uwsfw"]
+[ext_resource type="Script" uid="uid://c3jgfwo1roojm" path="res://scripts/customer_3.gd" id="1_n18l1"]
+[ext_resource type="Texture2D" uid="uid://6wovwvstf4p5" path="res://assets/kenney_toon-characters-1/Female adventurer/Vector/character_femaleAdventurer.svg" id="1_uwsfw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n18l1"]
 atlas = ExtResource("1_uwsfw")
@@ -86,19 +86,19 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xa4ae"]
-radius = 20.615528
+radius = 24.083189
 
 [node name="customer_3" type="CharacterBody2D" unique_id=1523173924]
 script = ExtResource("1_n18l1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=507290277]
-position = Vector2(-0.49999702, -47)
-scale = Vector2(0.6770833, 0.71875006)
+position = Vector2(0.7500012, -54.500004)
+scale = Vector2(0.8177083, 0.85156256)
 sprite_frames = SubResource("SpriteFrames_pvoj6")
 animation = &"walk_in"
 autoplay = "walk_in"
 frame_progress = 0.83067673
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584066500]
-position = Vector2(-2, -25)
+position = Vector2(1, -29)
 shape = SubResource("CircleShape2D_xa4ae")
