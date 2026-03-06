@@ -11,5 +11,5 @@ offset_left = -207.0
 offset_top = -90.0
 offset_right = 193.0
 offset_bottom = 84.0
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
