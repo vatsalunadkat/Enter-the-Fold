@@ -1,8 +1,8 @@
 extends Node
 
-# console.append_text( + "\n")
+signal customer_arrived
 
-@onready var console = $CanvasLayer/RichTextLabel
+@onready var console = $CanvasLayer/ConsoleLabel
 
 enum State {
 	IDLE,
@@ -20,66 +20,68 @@ enum State {
 var current_state = State.IDLE
 
 func _ready():
-	customer_arrived()
+	customer_arrived.connect(_on_customer_arrived)
+	enter_current_state()
 
-func customer_arrived() -> void:
+func _on_customer_arrived() -> void:
 	if current_state == State.IDLE:
-		enter_current_state()
 		change_state(State.CUSTOMER_ARRIVES)
 	else: 
 		return # ignore if already busy
 
 func change_state(new_state):
-	$CanvasLayer/RichTextLabel.append_text("\n")
+	print_to_text_label("\n")
 	current_state = new_state
 	print("[Current state is now: ", State.keys()[current_state] + "]")
-	console.append_text("[Current state is now: "+ State.keys()[current_state] + "] \n")
+	print_to_text_label("[Current state is now: "+ State.keys()[current_state] + "] \n")
 	enter_current_state()
 
 func enter_current_state():
 	match current_state:
 		State.IDLE:
 			print("Game is idle.")
-			console.append_text("Game is idle." + "\n")
+			print_to_text_label("Game is idle." + "\n")
 
 		State.CUSTOMER_ARRIVES:
 			print("Customer walks in.")
-			console.append_text("Customer walks in." + "\n")
+			print_to_text_label("Customer walks in." + "\n")
 			change_state(State.AWAITING_PICKUP)
 
 		State.AWAITING_PICKUP:
 			print("Waiting for player to pick up laundry.")
-			console.append_text("Waiting for player to pick up laundry." + "\n")
+			print_to_text_label("Waiting for player to pick up laundry." + "\n")
 
 		State.AWAITING_MACHINE_DROP:
 			print("Waiting for player to put laundry in machine.")
-			console.append_text("Waiting for player to put laundry in machine." + "\n")
+			print_to_text_label("Waiting for player to put laundry in machine." + "\n")
 
 		State.MACHINE_WASHING:
 			print("Machine is washing for 10 seconds.")
-			console.append_text("Machine is washing for 2 seconds." + "\n")
-			$Timer.start(2)
+			print_to_text_label("Machine is washing for 10 seconds." + "\n")
+			$Timer.start(10)
 
 		State.AWAITING_MACHINE_PICKUP:
 			print("Waiting to take out laundry from machine.")
-			console.append_text("Waiting to take out laundry from machine." + "\n")
+			print_to_text_label("Waiting to take out laundry from machine." + "\n")
 
 		State.AWAITING_SHELF_PLACE:
 			print("Waiting to place laundry on shelf.")
-			console.append_text("Waiting to place laundry on shelf." + "\n")
+			print_to_text_label("Waiting to place laundry on shelf." + "\n")
 
 		State.AWAITING_CUSTOMER_RETURN:
-			print("Waiting for 2 seconds for customer to return.")
-			console.append_text("Waiting for 2 seconds for customer to return." + "\n")
-			$Timer.start(2)
+			print("Waiting for 10 seconds for customer to return.")
+			print_to_text_label("Waiting for 10 seconds for customer to return." + "\n")
+			$Timer.start(10)
 
 		State.AWAITING_SERVE:
 			print("Waiting to give laundry to customer.")
-			console.append_text("Waiting to give laundry to customer." + "\n")
+			print_to_text_label("Waiting to give laundry to customer." + "\n")
 
 		State.MONEY_COLLECTED:
 			print("Customer paid.")
-			console.append_text("Customer paid." + "\n")
+			print_to_text_label("Customer paid.\n")
+			GameState.add_money(10)
+			print_to_text_label("\n \n")
 			change_state(State.IDLE)
 
 func complete_current_step():
@@ -104,14 +106,20 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_released():
 	#	var typed_event = event as InputEventKey 
 	#	var key_typed = PackedByteArray([typed_event.unicode]).get_string_from_utf8()
-		console.append_text("Nu har jag tryckt en knapp" + "\n")
+		print_to_text_label("\n" + "Nu har jag tryckt en knapp" + "\n")
 		complete_current_step()
-
 
 func _on_timer_timeout() -> void:
 	if current_state == State.MACHINE_WASHING:
 		print("Wash finished")
-		console.append_text("Wash finished" + "\n")
+		print_to_text_label("Wash finished" + "\n")
 		change_state(State.AWAITING_MACHINE_PICKUP)
 	else: if current_state == State.AWAITING_CUSTOMER_RETURN:
 		change_state(State.AWAITING_SERVE)
+
+func print_to_text_label(str : String) -> void:
+	console.append_text(str)
+	scroll_down()
+
+func scroll_down() -> void:
+	console.scroll_to_line(console.get_line_count()-1)

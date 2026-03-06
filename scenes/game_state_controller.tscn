@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1po0tngamr2p" path="res://scripts/game_state_controller.gd" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://cktdqjmp0yejp" path="res://scenes/canvas_layer.tscn" id="2_ts4rt"]
+[ext_resource type="PackedScene" uid="uid://dtu4vwmjo0n2p" path="res://scenes/HUD.tscn" id="3_ov82r"]
 
 [node name="GameStateController" type="Node2D" unique_id=409876603]
 script = ExtResource("1_vq0e2")
@@ -11,5 +12,7 @@ script = ExtResource("1_vq0e2")
 [node name="Timer" type="Timer" parent="." unique_id=151863445]
 wait_time = 2.0
 one_shot = true
+
+[node name="HUD" parent="." unique_id=305710861 instance=ExtResource("3_ov82r")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
