@@ -11,9 +11,22 @@ config_version=5
 [application]
 
 config/name="Enter the Fold"
-run/main_scene="uid://bqcjdjvqnxwnr"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*res://scripts/game_state.gd"
+GameConfig="*res://scripts/autoload/GameConfig.gd"
+SceneRouter="*res://scripts/autoload/SceneRouter.gd"
+SceneFader="*res://scenes/SceneFader.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [physics]
 
