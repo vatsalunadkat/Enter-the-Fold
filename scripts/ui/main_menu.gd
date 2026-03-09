@@ -16,7 +16,7 @@ func _on_play_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	SceneRouter.go_to("res://scenes/Settings.tscn")
+	SceneRouter.go_to("res://scenes/settings.tscn")
 
 
 func _on_quit_pressed() -> void:
