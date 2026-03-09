@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dtu4vwmjo0n2p"]
+
+[ext_resource type="Script" uid="uid://dpduajpk8vgme" path="res://scripts/HUD.gd" id="1_qpvh6"]
+
+[node name="HUD" type="CanvasLayer" unique_id=305710861]
+script = ExtResource("1_qpvh6")
+
+[node name="MoneyLabel" type="RichTextLabel" parent="." unique_id=1178573605]
+offset_left = 740.0
+offset_top = 16.0
+offset_right = 1131.0
+offset_bottom = 168.0
+bbcode_enabled = true
+text = "[font_size=28] [color=green] Money: $0[/color]"

@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://bplkfknmm37j7"]
+
+[ext_resource type="Script" uid="uid://k0a6fgvoy7eh" path="res://scripts/ui/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://dipmfjpx3ur1a" path="res://assets/background.jpg" id="2_wu84c"]
+[ext_resource type="FontFile" uid="uid://bpw3njoo0k7xm" path="res://assets/Kingthings Trypewriter 2.ttf" id="3_8ln24"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
+texture = ExtResource("2_wu84c")
+modulate_color = Color(0.53032374, 0.56395483, 0.5638572, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+bg_color = Color(0.5877506, 0.58775055, 0.5877505, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.69362634, 0.40572923, 0.3002875, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+bg_color = Color(0.53436106, 0.53436106, 0.534361, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.69362634, 0.40572923, 0.3002875, 0.6)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
+
+[node name="MainMenu" type="Control" unique_id=30200771]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqqt6")
+
+[node name="Panel" type="Panel" parent="." unique_id=1783518252]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7vrkn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=694392636]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -29.0
+offset_right = 156.875
+offset_bottom = 142.875
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1923673495]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.019148579, 0.009763922, 0.009557338, 1)
+theme_override_colors/font_focus_color = Color(0.032382112, 0.03238219, 0.032382347, 1)
+theme_override_colors/font_pressed_color = Color(0.0023445897, 0.00234459, 0.00234459, 1)
+theme_override_colors/font_hover_color = Color(0.0013967236, 0.0013967262, 0.001396733, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=230535380]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.019148579, 0.009763922, 0.009557338, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=731014739]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.019148579, 0.009763922, 0.009557338, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Quit"
+
+[node name="Label" type="Label" parent="." unique_id=1866088633]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -214.0
+offset_right = 239.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8ln24")
+theme_override_font_sizes/font_size = 60
+text = "Enter The Fold"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
