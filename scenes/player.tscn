@@ -1,6 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ri5gfd0gqvl6"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://dnepaw03w3o7a" path="res://scripts/player.gd" id="1_player"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=134322364]
+z_index = 1
+up_direction = Vector2(0, 1)
 script = ExtResource("1_player")

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b4i0li7jlxijp"]
 
 [ext_resource type="Texture2D" uid="uid://6xklf5vi0ttl" path="res://assets/sprites/world_tileset.png" id="1_kdeuo"]
-[ext_resource type="PackedScene" uid="uid://bge3hvun63g10" path="res://scenes/player.tscn" id="2_d8f04"]
+[ext_resource type="PackedScene" uid="uid://ri5gfd0gqvl6" path="res://scenes/player.tscn" id="2_d8f04"]
+[ext_resource type="PackedScene" uid="uid://dk4fi1jj8fu8o" path="res://scenes/laundry_player.tscn" id="3_d8f04"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_kdeuo")
@@ -172,11 +173,6 @@ layer_0/tile_data = PackedInt32Array(-196617, 0, 9, -196615, 0, 9, -196613, 0, 9
 [node name="Player" parent="." unique_id=1212903592 instance=ExtResource("2_d8f04")]
 position = Vector2(-83, 38)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2094589023]
-position = Vector2(3, -4)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-
 [node name="Markers" type="Node2D" parent="." unique_id=43952999]
 
 [node name="CustomerEntrance" type="Marker2D" parent="Markers" unique_id=1188845952]
@@ -196,3 +192,11 @@ position = Vector2(-132, 105)
 
 [node name="CameraRoot" type="Marker2D" parent="Markers" unique_id=283243946]
 position = Vector2(-52, 18)
+
+[node name="LaundryPlayer" parent="." unique_id=1659967272 instance=ExtResource("3_d8f04")]
+position = Vector2(83, -11)
+
+[node name="Camera2D" type="Camera2D" parent="LaundryPlayer" unique_id=2094589023]
+position = Vector2(-163, 45)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
