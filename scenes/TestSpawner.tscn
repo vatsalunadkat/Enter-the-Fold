@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dawvijl15hlos"]
+
+[ext_resource type="Script" uid="uid://cfdhmh8lq43ul" path="res://scripts/CustomerSpawner.gd" id="1_ow3vo"]
+[ext_resource type="Script" uid="uid://d8ftbvqphgou" path="res://scripts/TestSpawner.gd" id="1_v3if8"]
+
+[node name="TestSpawner" type="Node2D" unique_id=221850455]
+script = ExtResource("1_v3if8")
+
+[node name="Label" type="Label" parent="." unique_id=1480907059]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CustomerSpawner" type="Node" parent="." unique_id=1439938663]
+script = ExtResource("1_ow3vo")
