@@ -12,3 +12,11 @@ offset_right = 1131.0
 offset_bottom = 168.0
 bbcode_enabled = true
 text = "[font_size=28] [color=green] Money: $0[/color]"
+
+[node name="TimerLabel" type="RichTextLabel" parent="." unique_id=2045812733]
+offset_left = 1400.0
+offset_top = 16.0
+offset_right = 1890.0
+offset_bottom = 168.0
+bbcode_enabled = true
+text = "[font_size=28] [color=white] Time: 8:00 AM[/color]"
