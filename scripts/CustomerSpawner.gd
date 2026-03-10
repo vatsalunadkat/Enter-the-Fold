@@ -6,9 +6,9 @@ signal all_customers_done
 
 # Customer scene variants
 var customer_scenes = [
-	preload("res://scenes/customer.tscn"),
+	#preload("res://scenes/customer.tscn"),
 	preload("res://scenes/customer_2.tscn"),
-	preload("res://scenes/customer_3.tscn")
+	#preload("res://scenes/customer_3.tscn")
 ]
 
 # Customers per day by difficulty
@@ -22,11 +22,11 @@ const CUSTOMERS_PER_DIFFICULTY = {
 
 # Time between customer spawns
 const SPAWN_INTERVAL_SECONDS = {
-	0: 30.0,
-	1: 25.0,
-	2: 18.0,
-	3: 12.0,
-	4: 8.0
+	0: 1.0,
+	1: 1.0,
+	2: 1.0,
+	3: 1.0,
+	4: 1.0
 }
 
 var total_customers: int = 0
