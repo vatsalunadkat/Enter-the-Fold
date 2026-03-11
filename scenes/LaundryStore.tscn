@@ -197,7 +197,7 @@ position = Vector2(-52, 54)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1957540452]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1864145050]
 
 [node name="PauseMenu" parent="UI" unique_id=1598102924 instance=ExtResource("3_d8f04")]
 z_index = 1
