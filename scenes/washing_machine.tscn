@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dkhxv1o2p2xn8"]
+
+[ext_resource type="Script" uid="uid://dnfjh7yw70l4r" path="res://scenes/washing_machine.gd" id="1_1vf26"]
+[ext_resource type="Texture2D" uid="uid://cn2m8l6ungmow" path="res://assets/washine_machine.png" id="1_se0gy"]
+[ext_resource type="Texture2D" uid="uid://dfyimd7dkvny" path="res://assets/drum.png" id="2_1vf26"]
+[ext_resource type="Script" uid="uid://ct6ll53nfrtfp" path="res://scenes/running_effect.gd" id="3_fckx4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcvbw"]
+atlas = ExtResource("1_se0gy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehu1f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcvbw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="WashingMachine" type="Node2D" unique_id=617514775]
+position = Vector2(452, 156)
+script = ExtResource("1_1vf26")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1899322448]
+position = Vector2(134.74998, 153.49998)
+scale = Vector2(8.265624, 9.593749)
+sprite_frames = SubResource("SpriteFrames_ehu1f")
+animation = &"idle"
+
+[node name="RunningEffect" type="Sprite2D" parent="." unique_id=905546904]
+position = Vector2(67, 66)
+scale = Vector2(7.109377, 7.4843764)
+texture = ExtResource("2_1vf26")
+script = ExtResource("3_fckx4")
+
+[node name="DoneIndicator" type="Label" parent="." unique_id=1337018672]
+offset_left = 130.0
+offset_top = 20.0
+offset_right = 176.0
+offset_bottom = 43.0
+text = "Done!"
