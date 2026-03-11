@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://jlg38ndhrl7n"]
+
+[ext_resource type="Script" uid="uid://bgmekjuotyigj" path="res://scripts/PromptManager.gd" id="1_t281r"]
+[ext_resource type="PackedScene" uid="uid://dfkif1avl5r5h" path="res://typing/WordPrompt.tscn" id="2_1jtd4"]
+[ext_resource type="Script" uid="uid://bin2jk0x5bmm6" path="res://scripts/TypingManager.gd" id="3_l8v67"]
+
+[node name="PromptManager" type="Node2D" unique_id=131988312]
+script = ExtResource("1_t281r")
+
+[node name="WordPrompt" parent="." unique_id=762864750 instance=ExtResource("2_1jtd4")]
+position = Vector2(400, 200)
+
+[node name="TypingManager" type="Node2D" parent="." unique_id=1436859450]
+script = ExtResource("3_l8v67")

@@ -7,13 +7,22 @@ var focused_word: Node = null
 func register_word(word_node):
 	active_words.append(word_node)
 	word_node.connect("word_completed", Callable(self, "_on_word_completed"))
+		
+func unregister_word(word_node):
 
+	if active_words.has(word_node):
+		active_words.erase(word_node)
 
-func _on_word_completed(word_id):
+	# if the removed word was focused, unlock typing
+	if focused_word == word_node:
+		focused_word = null
 
-	active_words = active_words.filter(func(w): return w.word_id != word_id)
+func _on_word_completed(prompt):
 
-	focused_word = null
+	active_words.erase(prompt)
+
+	if focused_word == prompt:
+		focused_word = null
 
 
 func _input(event):
@@ -24,7 +33,6 @@ func _input(event):
 
 		if char_input == "":
 			return
-
 
 		# --------------------------------
 		# CASE 1 : WORD IS ALREADY LOCKED
@@ -92,5 +100,6 @@ func _input(event):
 				word.reset_word()
 
 
+		# lock focus if only one candidate remains
 		if candidates.size() == 1:
 			focused_word = candidates[0]

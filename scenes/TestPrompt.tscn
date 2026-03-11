@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://yvogtciu3o05"]
+
+[ext_resource type="Script" uid="uid://jwhxh0k6nsnc" path="res://scripts/TestPrompt.gd" id="1_7s2m1"]
+[ext_resource type="Script" uid="uid://bgmekjuotyigj" path="res://scripts/PromptManager.gd" id="2_bke1v"]
+[ext_resource type="Script" uid="uid://bin2jk0x5bmm6" path="res://scripts/TypingManager.gd" id="3_bke1v"]
+[ext_resource type="Script" uid="uid://cjdntwe5ne7w4" path="res://typing/WordPrompt.gd" id="4_oweym"]
+
+[node name="TestPrompt" type="Node2D" unique_id=542943127]
+script = ExtResource("1_7s2m1")
+
+[node name="PromptManager" type="Node2D" parent="." unique_id=1035081852]
+position = Vector2(400, 200)
+script = ExtResource("2_bke1v")
+
+[node name="WordPrompt" type="Node2D" parent="PromptManager" unique_id=902639538]
+position = Vector2(400, 200)
+script = ExtResource("4_oweym")
+
+[node name="WordLabel" type="RichTextLabel" parent="PromptManager/WordPrompt" unique_id=1476778105]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+
+[node name="TypingManager" type="Node2D" parent="PromptManager" unique_id=558205982]
+script = ExtResource("3_bke1v")
+
+[node name="FakeObject1" type="Node2D" parent="." unique_id=1386896253]
+position = Vector2(200, 400)
+
+[node name="ColorRect" type="ColorRect" parent="FakeObject1" unique_id=1410338154]
+offset_left = -70.0
+offset_top = -80.0
+offset_right = 50.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="FakeObject2" type="Node2D" parent="." unique_id=66651627]
+position = Vector2(500, 400)
+
+[node name="ColorRect" type="ColorRect" parent="FakeObject2" unique_id=17744280]
+offset_left = -70.0
+offset_top = -80.0
+offset_right = 50.0
+offset_bottom = 40.0
+color = Color(0, 1, 0, 1)
+
+[node name="FakeObject3" type="Node2D" parent="." unique_id=1876719729]
+position = Vector2(800, 400)
+
+[node name="ColorRect" type="ColorRect" parent="FakeObject3" unique_id=237372569]
+offset_left = -70.0
+offset_top = -80.0
+offset_right = 50.0
+offset_bottom = 40.0
+color = Color(0, 0, 1, 1)
