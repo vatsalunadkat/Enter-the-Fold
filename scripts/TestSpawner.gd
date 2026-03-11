@@ -16,7 +16,7 @@ func _ready() -> void:
 	print("Expected total customers:", total)
 
 func _on_customer_spawned(customer_node: Node) -> void:
-	print("Spawned customer:", customer_node.name)
+	pass
 
 func _on_all_customers_done() -> void:
 	print("All customers done for the day.")
