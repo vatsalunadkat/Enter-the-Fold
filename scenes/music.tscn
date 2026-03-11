@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c2i0wlmjyfx61"]
+
+[ext_resource type="AudioStream" uid="uid://b0ed723h4mi10" path="res://assets/audio/music/carefree.ogg" id="1_05ggv"]
+
+[node name="Music" type="AudioStreamPlayer" unique_id=1962345292]
+stream = ExtResource("1_05ggv")
+autoplay = true
+bus = &"Music"
