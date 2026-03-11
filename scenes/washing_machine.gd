@@ -54,8 +54,8 @@ func set_state(new_state: State) -> void:
 			tween.tween_property(done_indicator, "modulate:a", 0.0, 0.3)
 			tween.tween_property(done_indicator, "modulate:a", 1.0, 0.3)
 			emit_signal("wash_complete")
-
-# For testing — remove when integrating with LaundryStore
+			
+# For testing 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		start_wash(10.0)

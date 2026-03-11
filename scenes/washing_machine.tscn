@@ -25,20 +25,23 @@ position = Vector2(452, 156)
 script = ExtResource("1_1vf26")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1899322448]
-position = Vector2(134.74998, 153.49998)
-scale = Vector2(8.265624, 9.593749)
+position = Vector2(1.9999999, 0)
+scale = Vector2(1.5000011, 1.7656246)
 sprite_frames = SubResource("SpriteFrames_ehu1f")
 animation = &"idle"
 
 [node name="RunningEffect" type="Sprite2D" parent="." unique_id=905546904]
-position = Vector2(67, 66)
-scale = Vector2(7.109377, 7.4843764)
+position = Vector2(10, -20)
+scale = Vector2(2.1250002, 2.4023435)
 texture = ExtResource("2_1vf26")
 script = ExtResource("3_fckx4")
 
 [node name="DoneIndicator" type="Label" parent="." unique_id=1337018672]
-offset_left = 130.0
-offset_top = 20.0
-offset_right = 176.0
-offset_bottom = 43.0
+modulate = Color(1, 0.33233353, 0.20016035, 1)
+texture_filter = 1
+offset_left = -32.0
+offset_top = -33.0
+offset_right = 14.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 10
 text = "Done!"
