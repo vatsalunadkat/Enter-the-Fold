@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://k0a6fgvoy7eh" path="res://scripts/ui/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://dipmfjpx3ur1a" path="res://assets/background.jpg" id="2_wu84c"]
 [ext_resource type="FontFile" uid="uid://bpw3njoo0k7xm" path="res://assets/Kingthings Trypewriter 2.ttf" id="3_8ln24"]
-[ext_resource type="AudioStream" uid="uid://b0ed723h4mi10" path="res://assets/audio/music/carefree.ogg" id="4_ow34m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
 texture = ExtResource("2_wu84c")
@@ -127,11 +126,6 @@ theme_override_font_sizes/font_size = 60
 text = "Enter The Fold"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=412767337]
-stream = ExtResource("4_ow34m")
-autoplay = true
-bus = &"Music"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_pressed"]
