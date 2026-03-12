@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://u4u1ectoh5nh"]
 
-[ext_resource type="Script" path="res://scripts/game_state_controller.gd" id="1_vq0e2"]
+[ext_resource type="Script" uid="uid://d1po0tngamr2p" path="res://scripts/game_state_controller.gd" id="1_vq0e2"]
 [ext_resource type="PackedScene" uid="uid://cktdqjmp0yejp" path="res://scenes/canvas_layer.tscn" id="2_ts4rt"]
 [ext_resource type="PackedScene" uid="uid://dtu4vwmjo0n2p" path="res://scenes/HUD.tscn" id="3_ov82r"]
+[ext_resource type="Script" uid="uid://bgmekjuotyigj" path="res://scripts/PromptManager.gd" id="4_4ogbj"]
+[ext_resource type="Script" uid="uid://cjdntwe5ne7w4" path="res://typing/WordPrompt.gd" id="5_o5dri"]
+[ext_resource type="Script" uid="uid://bin2jk0x5bmm6" path="res://scripts/TypingManager.gd" id="6_ycv8h"]
 
 [node name="GameStateController" type="Node2D" unique_id=409876603]
 script = ExtResource("1_vq0e2")
@@ -14,5 +17,31 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HUD" parent="." unique_id=305710861 instance=ExtResource("3_ov82r")]
+
+[node name="PromptManager" type="Node2D" parent="." unique_id=453721420]
+position = Vector2(400, 200)
+script = ExtResource("4_4ogbj")
+
+[node name="WordPrompt" type="Node2D" parent="PromptManager" unique_id=791038180]
+position = Vector2(400, 200)
+script = ExtResource("5_o5dri")
+
+[node name="WordLabel" type="RichTextLabel" parent="PromptManager/WordPrompt" unique_id=395189205]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+
+[node name="TypingManager" type="Node2D" parent="PromptManager" unique_id=224389637]
+script = ExtResource("6_ycv8h")
+
+[node name="PickupAnchor" type="Node2D" parent="." unique_id=931079011]
+
+[node name="MachineAnchor" type="Node2D" parent="." unique_id=445463907]
+
+[node name="MachinePickupAnchor" type="Node2D" parent="." unique_id=1651050399]
+
+[node name="ShelfAnchor" type="Node2D" parent="." unique_id=1251714290]
+
+[node name="ServeAnchor" type="Node2D" parent="." unique_id=23718219]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

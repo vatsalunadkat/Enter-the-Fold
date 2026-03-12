@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://jlg38ndhrl7n"]
+[gd_scene format=3 uid="uid://daa5x5gn37sqs"]
 
 [ext_resource type="Script" uid="uid://bgmekjuotyigj" path="res://scripts/PromptManager.gd" id="1_t281r"]
 [ext_resource type="PackedScene" uid="uid://dfkif1avl5r5h" path="res://typing/WordPrompt.tscn" id="2_1jtd4"]
