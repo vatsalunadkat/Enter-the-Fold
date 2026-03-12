@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://6xklf5vi0ttl" path="res://assets/sprites/world_tileset.png" id="1_kdeuo"]
 [ext_resource type="PackedScene" uid="uid://dkhxv1o2p2xn8" path="res://scenes/washing_machine.tscn" id="2_d8f04"]
 [ext_resource type="PackedScene" uid="uid://dk4fi1jj8fu8o" path="res://scenes/laundry_player.tscn" id="3_d8f04"]
-[ext_resource type="PackedScene" uid="uid://dtu4vwmjo0n2p" path="res://scenes/HUD.tscn" id="3_no5vf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_kdeuo")
@@ -198,5 +197,3 @@ position = Vector2(83, -11)
 position = Vector2(-163, 45)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
-
-[node name="HUD" parent="." unique_id=305710861 instance=ExtResource("3_no5vf")]
