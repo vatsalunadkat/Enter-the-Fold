@@ -1,0 +1,60 @@
+{
+  "upgrades": [
+    {
+      "id": "extra_washer",
+      "name": "Extra Washing Machine",
+      "description": "Adds a 2nd washer — wash 2 loads at once",
+      "cost": 50,
+      "effect_type": "machine_slot",
+      "effect_value": "washer_2",
+      "max_purchases": 1
+    },
+    {
+      "id": "machine_speed",
+      "name": "Machine Speed Upgrade",
+      "description": "Reduces wash/dry/iron time from 10s to 7s",
+      "cost": 30,
+      "effect_type": "machine_speed",
+      "effect_value": 7,
+      "max_purchases": 1
+    },
+    {
+      "id": "premium_detergent",
+      "name": "Premium Detergent",
+      "description": "Increases money per customer by $5",
+      "cost": 20,
+      "effect_type": "money_bonus",
+      "effect_value": 5,
+      "max_purchases": 3
+    },
+    {
+      "id": "extra_shelf",
+      "name": "Extra Shelf",
+      "description": "Adds ShelfSlot_2 — hold more clean laundry",
+      "cost": 40,
+      "effect_type": "shelf_slot",
+      "effect_value": "shelf_2",
+      "max_purchases": 1
+    },
+    {
+      "id": "extra_dryer",
+      "name": "Extra Dryer",
+      "description": "Adds a 2nd dryer for Level 2+ (unlocks after buying Extra Washer)",
+      "cost": 60,
+      "effect_type": "machine_slot",
+      "effect_value": "dryer_2",
+      "max_purchases": 1,
+      "requires": "extra_washer"
+    },
+    {
+      "id": "extra_ironer",
+      "name": "Extra Ironer",
+      "description": "Adds a 2nd ironer for Level 3+ (unlocks after buying Extra Dryer)",
+      "cost": 70,
+      "effect_type": "machine_slot",
+      "effect_value": "ironer_2",
+      "max_purchases": 1,
+      "requires": "extra_dryer"
+    }
+  ]
+}

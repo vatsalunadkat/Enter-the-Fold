@@ -204,7 +204,9 @@ func _finish_player_action() -> void:
 func _start_day() -> void:
 	customers_served = 0
 	money_earned_today = 0
-	GameState.money = 0
+	# In endless mode, keep accumulated money; in regular levels, reset
+	if not GameConfig.endless_mode:
+		GameState.money = 0
 	day_running = true
 	day_over = false
 	day_timer.start_day()
@@ -214,7 +216,8 @@ func _start_day() -> void:
 	var level_desc := "Wash only"
 	if current_level == 2: level_desc = "Wash + Dry"
 	elif current_level == 3: level_desc = "Wash + Dry + Iron"
-	print("[Game] Level %d (%s) — difficulty %d" % [current_level, level_desc, GameConfig.current_difficulty])
+	var mode_str := " (Endless Day %d)" % GameConfig.endless_day if GameConfig.endless_mode else ""
+	print("[Game] Level %d (%s)%s — difficulty %d" % [current_level, level_desc, mode_str, GameConfig.current_difficulty])
 	spawn_timer.start(1.5)
 
 func _end_day() -> void:
@@ -351,9 +354,10 @@ func _start_washing(cid: int) -> void:
 	var cd = active_customers[cid]
 	cd["phase"] = CPhase.WASHING
 	var wi: int = cd["washer_idx"]
-	_update_hud_task("Washer %d running... (10s)" % (wi + 1))
+	var wash_time: float = UpgradeManager.machine_speed
+	_update_hud_task("Washer %d running... (%.0fs)" % [wi + 1, wash_time])
 	washers[wi].wash_complete.connect(_on_wash_done.bind(cid), CONNECT_ONE_SHOT)
-	washers[wi].start_wash(10.0)
+	washers[wi].start_wash(wash_time)
 
 func _on_wash_done(cid: int) -> void:
 	if not active_customers.has(cid): return
@@ -406,9 +410,10 @@ func _start_drying(cid: int) -> void:
 	var cd = active_customers[cid]
 	cd["phase"] = CPhase.DRYING
 	var di: int = cd["dryer_idx"]
-	_update_hud_task("Dryer %d running... (10s)" % (di + 1))
+	var dry_time: float = UpgradeManager.machine_speed
+	_update_hud_task("Dryer %d running... (%.0fs)" % [di + 1, dry_time])
 	dryers[di].wash_complete.connect(_on_dry_done.bind(cid), CONNECT_ONE_SHOT)
-	dryers[di].start_wash(10.0)
+	dryers[di].start_wash(dry_time)
 
 func _on_dry_done(cid: int) -> void:
 	if not active_customers.has(cid): return
@@ -459,9 +464,10 @@ func _start_ironing(cid: int) -> void:
 	var cd = active_customers[cid]
 	cd["phase"] = CPhase.IRONING
 	var ii: int = cd["ironer_idx"]
-	_update_hud_task("Ironer %d running... (10s)" % (ii + 1))
+	var iron_time: float = UpgradeManager.machine_speed
+	_update_hud_task("Ironer %d running... (%.0fs)" % [ii + 1, iron_time])
 	ironers[ii].wash_complete.connect(_on_iron_done.bind(cid), CONNECT_ONE_SHOT)
-	ironers[ii].start_wash(10.0)
+	ironers[ii].start_wash(iron_time)
 
 func _on_iron_done(cid: int) -> void:
 	if not active_customers.has(cid): return
@@ -560,7 +566,7 @@ func _serve_customer(cid: int) -> void:
 	var cd = active_customers[cid]
 	cd["phase"] = CPhase.LEAVING
 
-	var reward := 10
+	var reward := UpgradeManager.money_per_customer
 	GameState.add_money(reward)
 	money_earned_today += reward
 	customers_served += 1
