@@ -5,11 +5,17 @@
 [node name="WordPrompt" type="Node2D" unique_id=762864750]
 script = ExtResource("1_1nuxw")
 
+[node name="Backdrop" type="ColorRect" parent="."]
+offset_left = -80.0
+offset_top = -28.0
+offset_right = 80.0
+offset_bottom = 12.0
+color = Color(0, 0, 0, 0.7)
+
 [node name="WordLabel" type="RichTextLabel" parent="." unique_id=2120273592]
-custom_minimum_size = Vector2(400, 100)
-offset_left = -207.0
-offset_top = -90.0
-offset_right = 193.0
-offset_bottom = 84.0
-theme_override_font_sizes/normal_font_size = 36
+offset_left = -80.0
+offset_top = -28.0
+offset_right = 80.0
+offset_bottom = 12.0
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true

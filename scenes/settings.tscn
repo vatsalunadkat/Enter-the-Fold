@@ -43,13 +43,59 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.2702727, 0.21869728, 0.16804951, 1)
 theme_override_fonts/font = ExtResource("3_6wm04")
 theme_override_font_sizes/font_size = 40
-text = "Difficulty"
+text = "Customer Difficulty"
 
 [node name="DifficultyOption" type="OptionButton" parent="MarginContainer/VBoxContainer" unique_id=439621141]
 custom_minimum_size = Vector2(320, 55)
 layout_mode = 2
 alignment = 1
 expand_icon = true
+
+[node name="WordLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2702727, 0.21869728, 0.16804951, 1)
+theme_override_fonts/font = ExtResource("3_6wm04")
+theme_override_font_sizes/font_size = 40
+text = "Word Difficulty"
+
+[node name="WordDifficultyOption" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+alignment = 1
+expand_icon = true
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2702727, 0.21869728, 0.16804951, 1)
+theme_override_fonts/font = ExtResource("3_6wm04")
+theme_override_font_sizes/font_size = 40
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 30)
+layout_mode = 2
+min_value = -40.0
+max_value = 6.0
+step = 1.0
+value = -14.0
+
+[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2702727, 0.21869728, 0.16804951, 1)
+theme_override_fonts/font = ExtResource("3_6wm04")
+theme_override_font_sizes/font_size = 40
+text = "SFX Volume"
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 30)
+layout_mode = 2
+min_value = -40.0
+max_value = 6.0
+step = 1.0
+value = 3.0
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1122712646]
 custom_minimum_size = Vector2(320, 55)

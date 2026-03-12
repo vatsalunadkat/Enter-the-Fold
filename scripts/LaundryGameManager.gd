@@ -9,63 +9,63 @@ var customer_scenes = [
 var washing_machine_scene = preload("res://scenes/washing_machine.tscn")
 var prompt_manager_scene = preload("res://scenes/PromptManager.tscn")
 
-# ─── Node references (populated in _ready) ─────────────────────────
+# ─── Node references ───────────────────────────────────────────────
 var hud: CanvasLayer
 var prompt_manager: Node2D
 var day_timer: Node
 
-# Marker positions (from the Markers child group)
+# Marker positions
 var entrance_pos: Vector2
 var station_positions: Array[Vector2] = []   # 3 drop-off stations
-var machine_positions: Array[Vector2] = []   # 3 washing machine slots
-var shelf_pos: Vector2
 var counter_pos: Vector2
+var shelf_pos: Vector2
 var exit_pos: Vector2
 
 # Washing machine nodes
 var machines: Array[Node2D] = []
 var machine_busy: Array[bool] = [false, false, false]
 
-# ─── Game state ─────────────────────────────────────────────────────
-enum Phase {
-	WAITING_ARRIVAL,        # Waiting for next customer to spawn
-	CUSTOMER_WALKING_IN,    # Customer walking to drop-off station
-	AWAITING_PICKUP,        # Prompt above station — type to pick up laundry
-	MACHINE_WASHING,        # Machine running for 10 seconds
-	AWAITING_MACHINE_COLLECT, # Prompt above machine — type to collect clean laundry
-	CUSTOMER_RETURNING,     # 5-second wait for customer to walk back in
-	AWAITING_SERVE,         # Prompt above customer — type to serve & collect $
-	CUSTOMER_LEAVING,       # Customer walking out after being served
+# ─── Per-customer tracking ──────────────────────────────────────────
+# Each active customer is tracked in a dictionary keyed by a unique id.
+# Value: { node, phase, station_idx, machine_idx, return_timer }
+enum CPhase {
+	WALKING_IN,
+	AWAITING_PICKUP,
+	MACHINE_WASHING,
+	AWAITING_MACHINE_COLLECT,
+	CUSTOMER_RETURNING,
+	WALKING_TO_COUNTER,
+	AWAITING_SERVE,
+	LEAVING,
 }
 
-var phase: Phase = Phase.WAITING_ARRIVAL
-var current_customer: CharacterBody2D = null
-var assigned_station_idx: int = -1
-var assigned_machine_idx: int = -1
+var active_customers: Dictionary = {}  # id -> dict
+var next_cust_id: int = 0
+
+# ─── Day state ──────────────────────────────────────────────────────
 var customers_served: int = 0
-var total_customers: int = 0
-var day_running: bool = false
 var money_earned_today: int = 0
+var day_running: bool = false
+var day_over: bool = false
 
-# Customers per difficulty
-const CUSTOMERS_PER_DIFFICULTY := {
-	0: 2,   # Very Easy
-	1: 3,   # Easy
-	2: 5,   # Medium
-	3: 7,   # Hard
-	4: 10,  # Very Hard
+# Max simultaneous customers on screen — scales with difficulty
+const MAX_SIMULTANEOUS := {
+	0: 1,   # Very Easy
+	1: 2,   # Easy
+	2: 3,   # Medium
+	3: 3,   # Hard
+	4: 3,   # Very Hard
 }
-# Seconds between customer arrivals per difficulty
+# Spawn delay between customer arrivals
 const SPAWN_DELAY := {
-	0: 25.0,
-	1: 18.0,
-	2: 12.0,
-	3: 9.0,
-	4: 6.0,
+	0: 20.0,
+	1: 14.0,
+	2: 10.0,
+	3: 7.0,
+	4: 5.0,
 }
 
 var spawn_timer: Timer
-var return_timer: Timer
 
 # ─── Setup ──────────────────────────────────────────────────────────
 
@@ -83,7 +83,6 @@ func _setup_markers() -> void:
 	var markers = $Markers
 	entrance_pos = markers.get_node("CustomerEntrance").position
 
-	# 3 stations: use DropOffPoint plus offsets (spread along y)
 	var base_drop = markers.get_node("DropOffPoint").position
 	station_positions = [
 		base_drop,
@@ -93,15 +92,13 @@ func _setup_markers() -> void:
 
 	shelf_pos = markers.get_node("ShelfSlot_1").position
 	counter_pos = markers.get_node("PickupCounter").position
-	exit_pos = entrance_pos + Vector2(-60, 0)  # walk off screen left
+	exit_pos = entrance_pos + Vector2(-60, 0)
 
 func _setup_machines() -> void:
-	# Remove the existing single washing machine from the scene
 	var existing_machine = $Markers.get_node_or_null("WashingMachine")
 	if existing_machine:
 		existing_machine.queue_free()
 
-	# Create 3 washing machines at offsets from the original position
 	var base_machine_pos = Vector2(-108, -25)
 	var offsets = [Vector2(0, 0), Vector2(0, 30), Vector2(0, 60)]
 
@@ -109,13 +106,10 @@ func _setup_machines() -> void:
 		var wm = washing_machine_scene.instantiate()
 		wm.position = base_machine_pos + offsets[i]
 		wm.name = "Machine_%d" % i
-		# Remove the test _input handler from washing machines
 		wm.set_process_input(false)
 		add_child(wm)
 		machines.append(wm)
-		machine_busy.append(false)
 
-	# Fix array — we initialized with 3 defaults + appended 3 more
 	machine_busy = [false, false, false]
 
 func _setup_prompt_manager() -> void:
@@ -132,7 +126,6 @@ func _setup_day_timer() -> void:
 	day_timer.day_ended.connect(_on_day_ended)
 
 func _setup_hud() -> void:
-	# HUD is created in the scene tree by LaundryStore.tscn (GameHUD node under UI)
 	hud = get_node_or_null("UI/GameHUD")
 	if hud == null:
 		push_warning("GameHUD not found — HUD updates will be skipped")
@@ -144,75 +137,94 @@ func _setup_timers() -> void:
 	add_child(spawn_timer)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 
-	return_timer = Timer.new()
-	return_timer.one_shot = true
-	return_timer.name = "ReturnTimer"
-	add_child(return_timer)
-	return_timer.timeout.connect(_on_return_timer_timeout)
-
 # ─── Day lifecycle ──────────────────────────────────────────────────
 
 func _start_day() -> void:
-	var diff: int = GameConfig.current_difficulty
-	total_customers = CUSTOMERS_PER_DIFFICULTY.get(diff, 5)
 	customers_served = 0
 	money_earned_today = 0
 	GameState.money = 0
 	day_running = true
+	day_over = false
 
 	day_timer.start_day()
-	_update_hud_task("The day begins! Customers incoming...")
+	_update_hud_task("The day begins!")
 	_update_hud_money()
 	_update_hud_customers()
-	print("[Game] Day started — difficulty %d, %d customers" % [diff, total_customers])
+	print("[Game] Day started — difficulty %d" % GameConfig.current_difficulty)
 
-	# Spawn first customer after a short delay
-	spawn_timer.start(2.0)
+	spawn_timer.start(1.5)
 
 func _end_day() -> void:
+	if day_over:
+		return
+	day_over = true
 	day_running = false
+	spawn_timer.stop()
 	day_timer.stop()
 	prompt_manager.clear_all_prompts()
 	_update_hud_task("Day over!")
-	print("[Game] Day ended — served %d/%d, earned $%d" % [customers_served, total_customers, money_earned_today])
+	print("[Game] Day ended — served %d, earned $%d" % [customers_served, money_earned_today])
 	_show_end_of_day()
 
 func _show_end_of_day() -> void:
 	if hud and hud.has_method("show_day_over"):
-		hud.show_day_over(money_earned_today, customers_served, total_customers)
+		hud.show_day_over(money_earned_today, customers_served)
+
+func _check_day_over() -> void:
+	if not day_running and not day_over and active_customers.is_empty():
+		_end_day()
 
 # ─── Customer spawning ──────────────────────────────────────────────
 
 func _on_spawn_timer_timeout() -> void:
 	if not day_running:
 		return
-	if customers_served + (_count_active_customers()) >= total_customers:
-		return
-	_spawn_next_customer()
+	var max_sim: int = MAX_SIMULTANEOUS.get(GameConfig.current_difficulty, 3)
+	if active_customers.size() < max_sim:
+		_spawn_customer()
+	# Schedule next attempt
+	if day_running:
+		var delay: float = SPAWN_DELAY.get(GameConfig.current_difficulty, 10.0)
+		spawn_timer.start(delay)
 
-func _count_active_customers() -> int:
-	return 1 if current_customer != null else 0
+func _spawn_customer() -> void:
+	var cid: int = next_cust_id
+	next_cust_id += 1
 
-func _spawn_next_customer() -> void:
 	var scene_idx: int = randi() % customer_scenes.size()
-	current_customer = customer_scenes[scene_idx].instantiate()
-	current_customer.position = entrance_pos
-	add_child(current_customer)
+	var cust = customer_scenes[scene_idx].instantiate()
+	cust.position = entrance_pos
+	cust.scale = Vector2(0.3, 0.3)
+	cust.name = "Customer_%d" % cid
+	add_child(cust)
 
-	# Pick a random free station
-	assigned_station_idx = randi() % station_positions.size()
+	var station_idx: int = _find_free_station()
+	var machine_idx: int = _find_free_machine()
+	if machine_idx == -1:
+		machine_idx = 0
 
-	# Pick a free machine
-	assigned_machine_idx = _find_free_machine()
-	if assigned_machine_idx == -1:
-		assigned_machine_idx = 0  # fallback
+	var cdata := {
+		"node": cust,
+		"phase": CPhase.WALKING_IN,
+		"station_idx": station_idx,
+		"machine_idx": machine_idx,
+		"return_timer": null,
+	}
+	active_customers[cid] = cdata
 
-	phase = Phase.CUSTOMER_WALKING_IN
-	_update_hud_task("A customer is arriving...")
-	print("[Game] Customer spawned → walking to station %d" % assigned_station_idx)
+	cust.arrived.connect(_on_cust_arrived.bind(cid), CONNECT_ONE_SHOT)
+	cust.walk_to(station_positions[station_idx])
+	print("[Game] Customer %d spawned → station %d" % [cid, station_idx])
 
-	current_customer.arrived.connect(_on_customer_arrived_at_station, CONNECT_ONE_SHOT)
-	current_customer.walk_to(station_positions[assigned_station_idx])
+func _find_free_station() -> int:
+	var used := {}
+	for cdata in active_customers.values():
+		if cdata["station_idx"] >= 0:
+			used[cdata["station_idx"]] = true
+	for i in range(station_positions.size()):
+		if not used.has(i):
+			return i
+	return randi() % station_positions.size()
 
 func _find_free_machine() -> int:
 	for i in range(machines.size()):
@@ -222,88 +234,132 @@ func _find_free_machine() -> int:
 
 # ─── Phase transitions ──────────────────────────────────────────────
 
-func _on_customer_arrived_at_station() -> void:
-	phase = Phase.AWAITING_PICKUP
-	current_customer.start_idle()
+func _on_cust_arrived(cid: int) -> void:
+	if not active_customers.has(cid):
+		return
+	var cd = active_customers[cid]
+	cd["phase"] = CPhase.AWAITING_PICKUP
+	cd["node"].start_idle()
 
-	# Create an anchor node at the station for the prompt
-	var anchor = _make_anchor(station_positions[assigned_station_idx])
-	var word = prompt_manager.get_random_word("easy")
-	prompt_manager.show_prompt(word, anchor, "pickup")
-	_update_hud_task("Type '%s' to pick up the laundry!" % word)
-	print("[Game] AWAITING_PICKUP — type '%s'" % word)
+	var anchor = _make_anchor(station_positions[cd["station_idx"]])
+	var word = _get_word()
+	var prompt_id = "pickup_%d" % cid
+	prompt_manager.show_prompt(word, anchor, prompt_id)
+	_update_hud_task("Type '%s' to pick up laundry!" % word)
+	print("[Game] Customer %d: AWAITING_PICKUP — '%s'" % [cid, word])
 
 func _on_prompt_completed(state_id: String) -> void:
-	match state_id:
-		"pickup":
-			_handle_pickup_done()
-		"machine_collect":
-			_handle_machine_collect_done()
-		"serve":
-			_handle_serve_done()
+	var parts = state_id.split("_")
+	if parts.size() < 2:
+		return
+	var action = parts[0]
+	var cid = int(parts[parts.size() - 1])  # last part is the id
 
-func _handle_pickup_done() -> void:
-	phase = Phase.MACHINE_WASHING
-	machine_busy[assigned_machine_idx] = true
-
-	# Customer leaves after dropping off
-	current_customer.leave_to(exit_pos)
-
-	_update_hud_task("Laundry is washing... (10 seconds)")
-	print("[Game] MACHINE_WASHING — machine %d started" % assigned_machine_idx)
-
-	# Start the washing machine visuals + timer
-	var machine = machines[assigned_machine_idx]
-	machine.wash_complete.connect(_on_wash_complete, CONNECT_ONE_SHOT)
-	machine.start_wash(10.0)
-
-func _on_wash_complete() -> void:
-	phase = Phase.AWAITING_MACHINE_COLLECT
-	machine_busy[assigned_machine_idx] = false
-
-	var anchor = _make_anchor(machines[assigned_machine_idx].position)
-	var word = prompt_manager.get_random_word("easy")
-	prompt_manager.show_prompt(word, anchor, "machine_collect")
-	_update_hud_task("Washing done! Type '%s' to collect laundry." % word)
-	print("[Game] AWAITING_MACHINE_COLLECT — type '%s'" % word)
-
-func _handle_machine_collect_done() -> void:
-	machines[assigned_machine_idx].collect_laundry()
-	phase = Phase.CUSTOMER_RETURNING
-	_update_hud_task("Laundry on shelf. Customer returning in 5 seconds...")
-	print("[Game] CUSTOMER_RETURNING — 5 second wait")
-	return_timer.start(5.0)
-
-func _on_return_timer_timeout() -> void:
-	if phase != Phase.CUSTOMER_RETURNING:
+	if not active_customers.has(cid):
 		return
 
-	# Respawn / re-show the customer at entrance walking to counter
-	if current_customer == null or not is_instance_valid(current_customer):
+	match action:
+		"pickup":
+			_handle_pickup_done(cid)
+		"collect":
+			_handle_machine_collect_done(cid)
+		"serve":
+			_handle_serve_done(cid)
+
+func _handle_pickup_done(cid: int) -> void:
+	var cd = active_customers[cid]
+	cd["phase"] = CPhase.MACHINE_WASHING
+
+	var mi: int = cd["machine_idx"]
+	machine_busy[mi] = true
+
+	# Customer leaves store after drop-off
+	cd["node"].leave_to(exit_pos)
+
+	_update_hud_task("Machine %d washing... (10 seconds)" % (mi + 1))
+	print("[Game] Customer %d: MACHINE_WASHING on machine %d" % [cid, mi])
+
+	var machine = machines[mi]
+	machine.wash_complete.connect(_on_wash_complete.bind(cid), CONNECT_ONE_SHOT)
+	machine.start_wash(10.0)
+
+func _on_wash_complete(cid: int) -> void:
+	if not active_customers.has(cid):
+		return
+	var cd = active_customers[cid]
+	cd["phase"] = CPhase.AWAITING_MACHINE_COLLECT
+
+	var mi: int = cd["machine_idx"]
+	machine_busy[mi] = false
+
+	var anchor = _make_anchor(machines[mi].position)
+	var word = _get_word()
+	var prompt_id = "collect_%d" % cid
+	prompt_manager.show_prompt(word, anchor, prompt_id)
+	_update_hud_task("Machine %d done! Type '%s'" % [mi + 1, word])
+	print("[Game] Customer %d: AWAITING_MACHINE_COLLECT — '%s'" % [cid, word])
+
+func _handle_machine_collect_done(cid: int) -> void:
+	var cd = active_customers[cid]
+	machines[cd["machine_idx"]].collect_laundry()
+	cd["phase"] = CPhase.CUSTOMER_RETURNING
+	_update_hud_task("Laundry shelved! Customer returning in 5s...")
+	print("[Game] Customer %d: CUSTOMER_RETURNING in 5s" % cid)
+
+	var rt = Timer.new()
+	rt.one_shot = true
+	rt.name = "ReturnTimer_%d" % cid
+	add_child(rt)
+	cd["return_timer"] = rt
+	rt.timeout.connect(_on_return_timer.bind(cid), CONNECT_ONE_SHOT)
+	rt.start(5.0)
+
+func _on_return_timer(cid: int) -> void:
+	if not active_customers.has(cid):
+		return
+	var cd = active_customers[cid]
+
+	# Clean up timer
+	if cd["return_timer"] and is_instance_valid(cd["return_timer"]):
+		cd["return_timer"].queue_free()
+	cd["return_timer"] = null
+
+	cd["phase"] = CPhase.WALKING_TO_COUNTER
+
+	# Re-show or re-instantiate customer
+	var cust = cd["node"]
+	if cust == null or not is_instance_valid(cust):
 		var scene_idx: int = randi() % customer_scenes.size()
-		current_customer = customer_scenes[scene_idx].instantiate()
-		add_child(current_customer)
+		cust = customer_scenes[scene_idx].instantiate()
+		cust.scale = Vector2(0.3, 0.3)
+		cust.name = "Customer_%d_return" % cid
+		add_child(cust)
+		cd["node"] = cust
 
-	current_customer.position = entrance_pos
-	current_customer.show()
-	current_customer.arrived.connect(_on_customer_arrived_at_counter, CONNECT_ONE_SHOT)
-	current_customer.walk_to(counter_pos)
-	_update_hud_task("Customer is coming to pick up laundry...")
+	cust.position = entrance_pos
+	cust.show()
+	cust.arrived.connect(_on_cust_at_counter.bind(cid), CONNECT_ONE_SHOT)
+	cust.walk_to(counter_pos)
+	_update_hud_task("Customer coming to pick up laundry...")
 
-func _on_customer_arrived_at_counter() -> void:
-	phase = Phase.AWAITING_SERVE
-	current_customer.start_idle()
+func _on_cust_at_counter(cid: int) -> void:
+	if not active_customers.has(cid):
+		return
+	var cd = active_customers[cid]
+	cd["phase"] = CPhase.AWAITING_SERVE
+	cd["node"].start_idle()
 
 	var anchor = _make_anchor(counter_pos + Vector2(0, -10))
-	var word = prompt_manager.get_random_word("easy")
-	prompt_manager.show_prompt(word, anchor, "serve")
-	_update_hud_task("Type '%s' to serve the customer!" % word)
-	print("[Game] AWAITING_SERVE — type '%s'" % word)
+	var word = _get_word()
+	var prompt_id = "serve_%d" % cid
+	prompt_manager.show_prompt(word, anchor, prompt_id)
+	_update_hud_task("Type '%s' to serve customer!" % word)
+	print("[Game] Customer %d: AWAITING_SERVE — '%s'" % [cid, word])
 
-func _handle_serve_done() -> void:
-	phase = Phase.CUSTOMER_LEAVING
+func _handle_serve_done(cid: int) -> void:
+	var cd = active_customers[cid]
+	cd["phase"] = CPhase.LEAVING
 
-	# Award money
 	var reward := 10
 	GameState.add_money(reward)
 	money_earned_today += reward
@@ -311,32 +367,21 @@ func _handle_serve_done() -> void:
 
 	_update_hud_money()
 	_update_hud_customers()
-	_update_hud_task("$%d earned! Customer leaving..." % reward)
-	print("[Game] MONEY_COLLECTED — $%d (total: $%d, served: %d/%d)" % [reward, money_earned_today, customers_served, total_customers])
+	_update_hud_task("$%d earned!" % reward)
+	print("[Game] Customer %d: SERVED — $%d (total $%d)" % [cid, reward, money_earned_today])
 
-	# Customer walks out
-	current_customer.left_store.connect(_on_customer_left, CONNECT_ONE_SHOT)
-	current_customer.leave_to(exit_pos)
+	cd["node"].left_store.connect(_on_cust_left.bind(cid), CONNECT_ONE_SHOT)
+	cd["node"].leave_to(exit_pos)
+	_check_day_over()
 
-func _on_customer_left() -> void:
-	if current_customer and is_instance_valid(current_customer):
-		current_customer.queue_free()
-	current_customer = null
-	phase = Phase.WAITING_ARRIVAL
+func _on_cust_left(cid: int) -> void:
+	if active_customers.has(cid):
+		var cd = active_customers[cid]
+		if cd["node"] and is_instance_valid(cd["node"]):
+			cd["node"].queue_free()
+		active_customers.erase(cid)
 
-	if customers_served >= total_customers:
-		_end_day()
-		return
-
-	if not day_running:
-		_end_day()
-		return
-
-	# Schedule next customer
-	var diff: int = GameConfig.current_difficulty
-	var delay: float = SPAWN_DELAY.get(diff, 12.0)
-	spawn_timer.start(delay)
-	_update_hud_task("Next customer arriving soon...")
+	_check_day_over()
 
 # ─── Day timer callbacks ────────────────────────────────────────────
 
@@ -346,10 +391,11 @@ func _on_time_updated(_hour: int, _minute: int) -> void:
 
 func _on_day_ended() -> void:
 	day_running = false
-	# Let the current customer finish if one is being served
-	if phase == Phase.WAITING_ARRIVAL:
+	spawn_timer.stop()
+	if active_customers.is_empty():
 		_end_day()
-	# else: the day will end after the current customer cycle completes
+	else:
+		_update_hud_task("Store closing! Finish serving remaining customers...")
 
 # ─── HUD helpers ────────────────────────────────────────────────────
 
@@ -363,17 +409,27 @@ func _update_hud_money() -> void:
 
 func _update_hud_customers() -> void:
 	if hud and hud.has_method("update_customers"):
-		hud.update_customers(customers_served, total_customers)
+		hud.update_customers(customers_served)
 
 # ─── Utilities ──────────────────────────────────────────────────────
+
+func _get_word() -> String:
+	var diff_key: String = "easy"
+	var wd: int = GameConfig.word_difficulty
+	match wd:
+		0: diff_key = "letters"
+		1: diff_key = "easy"
+		2: diff_key = "easy"
+		3: diff_key = "medium"
+		4: diff_key = "hard"
+	return prompt_manager.get_random_word(diff_key)
 
 func _make_anchor(pos: Vector2) -> Node2D:
 	var anchor = Node2D.new()
 	anchor.position = pos
 	anchor.name = "PromptAnchor"
 	add_child(anchor)
-	# Clean up anchors when prompts complete
-	get_tree().create_timer(30.0).timeout.connect(func():
+	get_tree().create_timer(60.0).timeout.connect(func():
 		if is_instance_valid(anchor):
 			anchor.queue_free()
 	)

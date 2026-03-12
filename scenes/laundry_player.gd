@@ -4,6 +4,6 @@ extends CharacterBody2D
 # The player character stays at a fixed position in the store.
 
 func _ready() -> void:
-	# Play idle animation if available
 	if has_node("AnimatedSprite2D"):
-		$AnimatedSprite2D.play("default")
+		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.frame = 0

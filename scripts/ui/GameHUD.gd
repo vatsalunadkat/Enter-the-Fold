@@ -22,13 +22,13 @@ func update_time(time_str: String) -> void:
 func update_task(text: String) -> void:
 	task_label.text = text
 
-func update_customers(served: int, total: int) -> void:
-	customers_label.text = "Customers: %d / %d" % [served, total]
+func update_customers(served: int) -> void:
+	customers_label.text = "Served: %d" % served
 
-func show_day_over(money: int, served: int, total: int) -> void:
+func show_day_over(money: int, served: int) -> void:
 	day_over_panel.visible = true
 	day_over_money.text = "Money earned: $%d" % money
-	day_over_served.text = "Customers served: %d / %d" % [served, total]
+	day_over_served.text = "Customers served: %d" % served
 
 func _on_menu_pressed() -> void:
 	get_tree().paused = false

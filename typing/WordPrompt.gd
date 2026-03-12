@@ -7,6 +7,7 @@ var word_id := ""
 var match_index := 0
 
 @onready var label := $WordLabel
+@onready var backdrop := $Backdrop
 @export var anchor_node: Node2D
 
 
@@ -43,7 +44,15 @@ func update_display():
 	var typed = word.substr(0, match_index)
 	var remaining = word.substr(match_index)
 
-	label.text = "[center][font_size=36][color=green]" + typed + "[/color]" + remaining + "[/font_size][/center]"
+	label.text = "[center][color=lime]" + typed + "[/color][color=white]" + remaining + "[/color][/center]"
+
+	# Resize backdrop to fit word length
+	var char_width := 10
+	var half_w: float = max(word.length() * char_width / 2.0, 30.0)
+	backdrop.offset_left = -half_w - 6
+	backdrop.offset_right = half_w + 6
+	label.offset_left = -half_w - 6
+	label.offset_right = half_w + 6
 	
 func reset_word():
 	match_index = 0
