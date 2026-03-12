@@ -15,12 +15,17 @@ run/main_scene="uid://bplkfknmm37j7"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cous8jjgpw6u2"
+
 [autoload]
 
 GameState="*res://scripts/game_state.gd"
 GameConfig="*res://scripts/autoload/GameConfig.gd"
 SceneRouter="*res://scripts/autoload/SceneRouter.gd"
 SceneFader="*res://scenes/SceneFader.tscn"
+Music="*uid://c2i0wlmjyfx61"
 
 [display]
 

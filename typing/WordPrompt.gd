@@ -2,24 +2,24 @@ extends Node2D
 
 signal word_completed(word_id)
 
-@export var fall_speed := 60.0   # slower fall
-
 var word := ""
 var word_id := ""
 var match_index := 0
 
 @onready var label := $WordLabel
+@export var anchor_node: Node2D
 
 
-func setup(new_word: String, id: String):
+func set_word(new_word: String):
 	word = new_word
-	word_id = id
 	match_index = 0
 	update_display()
 
 
-func _process(delta):
-	position.y += fall_speed * delta
+func _process(_delta):
+
+	if anchor_node != null:
+		global_position = anchor_node.global_position + Vector2(0, -50)
 
 
 func can_match(char: String) -> bool:
@@ -30,9 +30,8 @@ func advance():
 	match_index += 1
 	update_display()
 
-	if match_index == word.length():
-		emit_signal("word_completed", word_id)
-		queue_free()
+	if match_index >= word.length():
+		word_completed.emit(self)
 
 
 func reset_progress():
@@ -49,3 +48,4 @@ func update_display():
 func reset_word():
 	match_index = 0
 	update_display()
+	
