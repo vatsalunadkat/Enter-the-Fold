@@ -4,14 +4,34 @@
 	"n","o","p","q","r","s","t","u","v","w","x","y","z"
   ],
   "easy": [
-	"cat","dog","sun","tree","fish","book","milk","star","rock","blue"
+	"cat","dog","sun","tree","fish","book","milk","star","rock","blue",
+	"hat","cup","bed","pen","run","box","red","hot","sit","top",
+	"fan","pig","rat","leg","map","bag","rod","pot","lid","jam",
+	"bun","web","log","mud","fog","zip","hop","nut","tap","pin",
+	"car","bus","van","jet","ant","fox","hen","cow","owl","bat"
   ],
   "medium": [
 	"planet","silver","forest","castle","rocket",
-	"garden","hunter","yellow","bridge","shadow"
+	"garden","hunter","yellow","bridge","shadow",
+	"basket","button","candle","dinner","engine",
+	"finger","golden","hammer","insect","jacket",
+	"kitten","ladder","magnet","needle","orange",
+	"parrot","rabbit","saddle","temple","velvet",
+	"winter","napkin","pencil","ribbon","summit",
+	"tunnel","walnut","clover","blanket","cotton",
+	"fabric","pillow","pocket","polish","sponge",
+	"starch","bucket","tumble","washer","bleach"
   ],
   "hard": [
 	"galaxy","phantom","quantum","mystery","explorer",
-	"velocity","dynamics","strategy","triangle","absolute"
+	"velocity","dynamics","strategy","triangle","absolute",
+	"bacteria","calendar","dialogue","elephant","friction",
+	"geometry","harmonic","illusion","junction","keyboard",
+	"language","magnetic","notebook","obstacle","parallel",
+	"spectrum","symmetry","textbook","umbrella","vitamins",
+	"wrinkle","laundry","detergent","ironing","delivery",
+	"customer","register","conveyor","machinery","pressing",
+	"starched","softener","cylinder","pristine","overflow",
+	"solvent","dryclean","carousel","capacity","dispatch"
   ]
 }
