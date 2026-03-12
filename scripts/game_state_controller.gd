@@ -95,8 +95,8 @@ func enter_current_state():
 			)
 
 		State.AWAITING_CUSTOMER_RETURN:
-			print("Waiting for 10 seconds for customer to return.")
-			print_to_text_label("Waiting for 10 seconds for customer to return." + "\n")
+			print("Waiting for 3 seconds for customer to return.")
+			print_to_text_label("Waiting for 3 seconds for customer to return." + "\n")
 			$Timer.start(3)
 
 		State.AWAITING_SERVE:
