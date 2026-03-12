@@ -3,17 +3,22 @@ extends Node
 signal customer_arrived
 
 @onready var console = $CanvasLayer/ConsoleLabel
+@onready var prompt_manager = $PromptManager
+@onready var pickup_anchor = $PickupAnchor
+@onready var machine_anchor = $MachineAnchor
+@onready var shelf_anchor = $ShelfAnchor
+@onready var serve_anchor = $ServeAnchor
 
 enum State {
 	IDLE,
 	CUSTOMER_ARRIVES,
-	AWAITING_PICKUP, #prompt appear
-	AWAITING_MACHINE_DROP,#prompt appear
+	AWAITING_PICKUP,
+	AWAITING_MACHINE_DROP,
 	MACHINE_WASHING,
-	AWAITING_MACHINE_PICKUP, #prompt appear
-	AWAITING_SHELF_PLACE, #prompt appear
+	AWAITING_MACHINE_PICKUP,
+	AWAITING_SHELF_PLACE,
 	AWAITING_CUSTOMER_RETURN,
-	AWAITING_SERVE, #prompt appear
+	AWAITING_SERVE,
 	MONEY_COLLECTED
 }
 
@@ -21,6 +26,7 @@ var current_state = State.IDLE
 
 func _ready():
 	customer_arrived.connect(_on_customer_arrived)
+	prompt_manager.prompt_completed.connect(_on_prompt_completed)
 	enter_current_state()
 
 func _on_customer_arrived() -> void:
@@ -50,32 +56,57 @@ func enter_current_state():
 		State.AWAITING_PICKUP:
 			print("Waiting for player to pick up laundry.")
 			print_to_text_label("Waiting for player to pick up laundry." + "\n")
+			prompt_manager.show_prompt(
+				prompt_manager.get_random_word("easy"),
+				pickup_anchor,
+				"awaiting_pickup"
+			)
 
 		State.AWAITING_MACHINE_DROP:
 			print("Waiting for player to put laundry in machine.")
 			print_to_text_label("Waiting for player to put laundry in machine." + "\n")
+			prompt_manager.show_prompt(
+				prompt_manager.get_random_word("easy"),
+				machine_anchor,
+				"awaiting_machine_drop"
+			)
 
 		State.MACHINE_WASHING:
-			print("Machine is washing for 10 seconds.")
-			print_to_text_label("Machine is washing for 10 seconds." + "\n")
-			$Timer.start(10)
+			print("Machine is washing for 3 seconds.")
+			print_to_text_label("Machine is washing for 3 seconds." + "\n")
+			$Timer.start(3)
 
 		State.AWAITING_MACHINE_PICKUP:
 			print("Waiting to take out laundry from machine.")
 			print_to_text_label("Waiting to take out laundry from machine." + "\n")
+			prompt_manager.show_prompt(
+				prompt_manager.get_random_word("easy"),
+				machine_anchor,
+				"awaiting_machine_pickup"
+			)
 
 		State.AWAITING_SHELF_PLACE:
 			print("Waiting to place laundry on shelf.")
 			print_to_text_label("Waiting to place laundry on shelf." + "\n")
+			prompt_manager.show_prompt(
+				prompt_manager.get_random_word("easy"),
+				shelf_anchor,
+				"awaiting_shelf_place"
+			)
 
 		State.AWAITING_CUSTOMER_RETURN:
 			print("Waiting for 10 seconds for customer to return.")
 			print_to_text_label("Waiting for 10 seconds for customer to return." + "\n")
-			$Timer.start(10)
+			$Timer.start(3)
 
 		State.AWAITING_SERVE:
 			print("Waiting to give laundry to customer.")
 			print_to_text_label("Waiting to give laundry to customer." + "\n")
+			prompt_manager.show_prompt(
+				prompt_manager.get_random_word("easy"),
+				serve_anchor,
+				"awaiting_serve"
+			)
 
 		State.MONEY_COLLECTED:
 			print("Customer paid.")
@@ -101,14 +132,6 @@ func complete_current_step():
 		State.AWAITING_SERVE:
 			change_state(State.MONEY_COLLECTED)
 
-#TEMPORARY FUNC 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_released():
-	#	var typed_event = event as InputEventKey 
-	#	var key_typed = PackedByteArray([typed_event.unicode]).get_string_from_utf8()
-		print_to_text_label("\n" + "Nu har jag tryckt en knapp" + "\n")
-		complete_current_step()
-
 func _on_timer_timeout() -> void:
 	if current_state == State.MACHINE_WASHING:
 		print("Wash finished")
@@ -123,3 +146,16 @@ func print_to_text_label(str : String) -> void:
 
 func scroll_down() -> void:
 	console.scroll_to_line(console.get_line_count()-1)
+	
+func _on_prompt_completed(state_id: String) -> void:
+	match state_id:
+		"awaiting_pickup":
+			change_state(State.AWAITING_MACHINE_DROP)
+		"awaiting_machine_drop":
+			change_state(State.MACHINE_WASHING)
+		"awaiting_machine_pickup":
+			change_state(State.AWAITING_SHELF_PLACE)
+		"awaiting_shelf_place":
+			change_state(State.AWAITING_CUSTOMER_RETURN)
+		"awaiting_serve":
+			change_state(State.MONEY_COLLECTED)
