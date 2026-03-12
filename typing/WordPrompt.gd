@@ -47,8 +47,8 @@ func update_display():
 	label.text = "[center][color=lime]" + typed + "[/color][color=white]" + remaining + "[/color][/center]"
 
 	# Resize backdrop to fit word length
-	var char_width := 10
-	var half_w: float = max(word.length() * char_width / 2.0, 30.0)
+	var char_width := 16
+	var half_w: float = max(word.length() * char_width / 2.0, 40.0)
 	backdrop.offset_left = -half_w - 6
 	backdrop.offset_right = half_w + 6
 	label.offset_left = -half_w - 6

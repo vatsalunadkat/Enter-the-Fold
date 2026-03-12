@@ -169,7 +169,6 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_muyek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
-disabled = true
 text = "Level 2"
 
 [node name="Level3Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1705388554]
@@ -185,7 +184,6 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_muyek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
-disabled = true
 text = "Level 3"
 
 [node name="Level4Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1493711480]
