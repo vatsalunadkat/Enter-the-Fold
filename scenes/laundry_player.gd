@@ -1,21 +1,34 @@
 extends CharacterBody2D
 
-const SPEED = 130.0
+signal arrived
 
-func _physics_process(delta: float) -> void:
-	# Get input for both axes
-	var direction_x := Input.get_axis("ui_left", "ui_right")
-	var direction_y := Input.get_axis("ui_up", "ui_down")
+var speed := 120.0
+var _target: Vector2
+var _walking: bool = false
 
-	# Apply movement or decelerate to 0
-	if direction_x:
-		velocity.x = direction_x * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+@onready var sprite := $AnimatedSprite2D
 
-	if direction_y:
-		velocity.y = direction_y * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+func _ready() -> void:
+	sprite.stop()
+	sprite.frame = 0
 
-	move_and_slide()
+func walk_to(target_pos: Vector2) -> void:
+	_target = target_pos
+	_walking = true
+	sprite.flip_h = (target_pos.x < global_position.x)
+	sprite.play("default")
+
+func stop_walking() -> void:
+	_walking = false
+	sprite.stop()
+	sprite.frame = 0
+
+func _process(delta: float) -> void:
+	if not _walking:
+		return
+	position = position.move_toward(_target, speed * delta)
+	if position.distance_to(_target) < 2.0:
+		_walking = false
+		sprite.stop()
+		sprite.frame = 0
+		arrived.emit()

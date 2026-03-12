@@ -4,14 +4,59 @@
 	"n","o","p","q","r","s","t","u","v","w","x","y","z"
   ],
   "easy": [
-	"cat","dog","sun","tree","fish","book","milk","star","rock","blue"
+	"cat","dog","sun","tree","fish","book","milk","star","rock","blue",
+	"hat","cup","bed","pen","run","box","red","hot","sit","top",
+	"fan","pig","rat","leg","map","bag","rod","pot","lid","jam",
+	"bun","web","log","mud","fog","zip","hop","nut","tap","pin",
+	"car","bus","van","jet","ant","fox","hen","cow","owl","bat",
+	"ink","oak","rim","tin","yam","wig","dip","elm","orb","tow",
+	"gem","hum","wax","oar","rye","sew","vow","axe","ivy","pod",
+	"cub","dew","fig","gum","jug","keg","lob","mop","nap","ore",
+	"pew","rag","soy","tic","urn","vie","yew","ape","bow","cot",
+	"den","eel","fly","gap","hue","ice","joy","kit","lip","mug"
   ],
   "medium": [
 	"planet","silver","forest","castle","rocket",
-	"garden","hunter","yellow","bridge","shadow"
+	"garden","hunter","yellow","bridge","shadow",
+	"basket","button","candle","dinner","engine",
+	"finger","golden","hammer","insect","jacket",
+	"kitten","ladder","magnet","needle","orange",
+	"parrot","rabbit","saddle","temple","velvet",
+	"winter","napkin","pencil","ribbon","summit",
+	"tunnel","walnut","clover","blanket","cotton",
+	"fabric","pillow","pocket","polish","sponge",
+	"starch","bucket","tumble","washer","bleach",
+	"anchor","bronze","carpet","donkey","falcon",
+	"goblet","harbor","jungle","kettle","locket",
+	"mangle","nozzle","oyster","pebble","quiver",
+	"rustly","saddle","tangle","umpire","violet",
+	"weasel","zenith","cobalt","dampen","faucet",
+	"groove","helmet","jingle","knotty","lumber",
+	"mortar","nectar","plaque","garnet","ripple",
+	"sickle","thatch","vessel","wobble","mystic",
+	"pewter","socket","fiddle","cactus","bonnet",
+	"castle","muffin","noodle","riddle","sundry"
   ],
   "hard": [
 	"galaxy","phantom","quantum","mystery","explorer",
-	"velocity","dynamics","strategy","triangle","absolute"
+	"velocity","dynamics","strategy","triangle","absolute",
+	"bacteria","calendar","dialogue","elephant","friction",
+	"geometry","harmonic","illusion","junction","keyboard",
+	"language","magnetic","notebook","obstacle","parallel",
+	"spectrum","symmetry","textbook","umbrella","vitamins",
+	"wrinkle","laundry","detergent","ironing","delivery",
+	"customer","register","conveyor","machinery","pressing",
+	"starched","softener","cylinder","pristine","overflow",
+	"solvent","dryclean","carousel","capacity","dispatch",
+	"alchemy","artifact","blueprint","catalyst","compound",
+	"corridor","dialogue","duration","escalate","forensic",
+	"governor","heritage","interval","leverage","manifold",
+	"mortgage","nominate","obsolete","pentagon","pavilion",
+	"regiment","sculptor","temporal","terminal","vanguard",
+	"alphabet","barracks","champion","communal","decisive",
+	"doctrine","feedback","membrane","nitrogen","occupant",
+	"paradigm","quantity","remnants","standard","treasury",
+	"volatile","backward","cognizal","diplomat","equation",
+	"fraction","gradient","imperial","jeopardy","kilowatt"
   ]
 }

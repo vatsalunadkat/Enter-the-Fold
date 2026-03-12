@@ -169,7 +169,6 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_muyek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
-disabled = true
 text = "Level 2"
 
 [node name="Level3Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1705388554]
@@ -185,10 +184,10 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_muyek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
-disabled = true
 text = "Level 3"
 
 [node name="Level4Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1493711480]
+visible = false
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.011223694, 0.011294336, 0.009274182, 1)
@@ -200,6 +199,7 @@ disabled = true
 text = "Level 4"
 
 [node name="Level5Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1355528510]
+visible = false
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -210,49 +210,39 @@ text = "Level 5"
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_adu0t")
 
-[node name="RightColumns" type="VBoxContainer" parent="Panel/MainVBox/Cloumns/RightPanel" unique_id=904519990]
+[node name="VBox" type="VBoxContainer" parent="Panel/MainVBox/Cloumns/RightPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
 
-[node name="Level6Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=497271034]
+[node name="EndlessTitle" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Endless Mode"
+horizontal_alignment = 1
+
+[node name="EndlessButton" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/VBox"]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjqxc")
-disabled = true
-text = "Level 6"
+text = "Play Endless"
 
-[node name="Level7Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=1304335569]
-custom_minimum_size = Vector2(260, 60)
+[node name="InfoBox" type="PanelContainer" parent="Panel/MainVBox/Cloumns/RightPanel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_uo0xe")
-disabled = true
-text = "Level 7"
 
-[node name="Level8Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=1003687234]
-custom_minimum_size = Vector2(260, 60)
+[node name="InfoLabel" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox/InfoBox"]
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_vp03w")
-disabled = true
-text = "Level 8"
-
-[node name="Level9Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=165507904]
-custom_minimum_size = Vector2(260, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_82unp")
-disabled = true
-text = "Level 9"
-
-[node name="Level10Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=1970596564]
-custom_minimum_size = Vector2(260, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_i1c1a")
-disabled = true
-text = "Level 10"
+theme_override_font_sizes/font_size = 14
+text = "Keep playing day after day!
+Upgrade your laundromat
+between days with your
+earnings. How long can
+you keep up?"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="BackButton" type="Button" parent="Panel/MainVBox" unique_id=773277582]
 modulate = Color(0.51872796, 0.41498053, 0.3311943, 1)
