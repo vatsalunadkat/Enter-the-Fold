@@ -7,7 +7,7 @@ func go_to(scene_path: String) -> void:
 		return
 	is_transitioning = true
 
-	# Block input briefly to avoid rapid-click problems
+	# Block input to avoid rapid-click problems
 	var root := get_tree().root
 	root.set_process_input(false)
 	root.set_process_unhandled_input(false)

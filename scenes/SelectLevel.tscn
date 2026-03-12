@@ -132,7 +132,7 @@ text = "Select Level"
 [node name="Cloumns" type="HBoxContainer" parent="Panel/MainVBox" unique_id=915221487]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 60
+theme_override_constants/separation = 66
 alignment = 1
 
 [node name="leftPanel" type="PanelContainer" parent="Panel/MainVBox/Cloumns" unique_id=1460239216]
@@ -146,10 +146,11 @@ size_flags_horizontal = 3
 [node name="Level1Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1845406354]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 8
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
@@ -158,15 +159,13 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
 text = "Level 1"
 
 [node name="Level2Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1285295993]
-modulate = Color(0.054615453, 0.028224874, 0.028223734, 1)
-self_modulate = Color(0.029506557, 0.029506557, 0.029506557, 1)
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.9867516, 0.9867516, 0.9867516, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_muyek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
@@ -174,14 +173,15 @@ disabled = true
 text = "Level 2"
 
 [node name="Level3Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1705388554]
-modulate = Color(0.46358675, 0.46358675, 0.4635867, 1)
+modulate = Color(0.9691369, 0.9691369, 0.9691368, 1)
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_muyek")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
@@ -191,12 +191,18 @@ text = "Level 3"
 [node name="Level4Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1493711480]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.011223694, 0.011294336, 0.009274182, 1)
+theme_override_colors/font_focus_color = Color(0.000113827744, 0.00011382807, 0.00011382859, 1)
+theme_override_colors/font_pressed_color = Color(0.0035191667, 0.0035191681, 0.0035191672, 1)
+theme_override_colors/font_hover_color = Color(0.033853203, 0.033853274, 0.033853445, 1)
+theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Level 4"
 
 [node name="Level5Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1355528510]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Level 5"
 
@@ -211,6 +217,7 @@ size_flags_horizontal = 3
 [node name="Level6Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=497271034]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjqxc")
 disabled = true
 text = "Level 6"
@@ -218,6 +225,7 @@ text = "Level 6"
 [node name="Level7Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=1304335569]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_uo0xe")
 disabled = true
 text = "Level 7"
@@ -225,6 +233,7 @@ text = "Level 7"
 [node name="Level8Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=1003687234]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_vp03w")
 disabled = true
 text = "Level 8"
@@ -232,6 +241,7 @@ text = "Level 8"
 [node name="Level9Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=165507904]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_82unp")
 disabled = true
 text = "Level 9"
@@ -239,6 +249,7 @@ text = "Level 9"
 [node name="Level10Button" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/RightColumns" unique_id=1970596564]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_i1c1a")
 disabled = true
 text = "Level 10"

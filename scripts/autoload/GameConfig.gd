@@ -1,7 +1,14 @@
 extends Node
 
-# 0..2 for 3 difficulty options
-var current_difficulty: int = 0  # default: easy option
+enum Difficulty {
+	VERY_EASY,
+	EASY,
+	MEDIUM,
+	HARD,
+	VERY_HARD
+}
+
+var current_difficulty: int = Difficulty.MEDIUM
 
 func set_difficulty(value: int) -> void:
-	current_difficulty = clamp(value, 0, 2)
+	current_difficulty = clamp(value, Difficulty.VERY_EASY, Difficulty.VERY_HARD)
