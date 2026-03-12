@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://qahclx3k23p2"]
 
 [ext_resource type="Texture2D" uid="uid://6xklf5vi0ttl" path="res://assets/sprites/world_tileset.png" id="1_kdeuo"]
-[ext_resource type="PackedScene" uid="uid://cngacafmmbnm0" path="res://scenes/laundry_player2.tscn" id="2_kdeuo"]
 [ext_resource type="PackedScene" uid="uid://bo1oxytkb81rq" path="res://scenes/PauseMenu.tscn" id="3_d8f04"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
@@ -189,13 +188,6 @@ position = Vector2(-132, 105)
 
 [node name="CameraRoot" type="Marker2D" parent="Markers" unique_id=283243946]
 position = Vector2(-52, 18)
-
-[node name="LaundryPlayer2" parent="." unique_id=949252272 instance=ExtResource("2_kdeuo")]
-
-[node name="Camera2D" type="Camera2D" parent="LaundryPlayer2" unique_id=2094589023]
-position = Vector2(-52, 54)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1864145050]
 
