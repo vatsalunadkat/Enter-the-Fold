@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dk4fi1jj8fu8o"]
+
+[ext_resource type="Script" uid="uid://3qq54sy41lb4" path="res://scenes/laundry_player.gd" id="1_7cfvj"]
+[ext_resource type="Texture2D" uid="uid://bvah1r2v0kc4l" path="res://assets/kenney_toon-characters-1/Male person/Tilesheet/character_malePerson_sheetHD.png" id="2_pt7hr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72mlk"]
+atlas = ExtResource("2_pt7hr")
+region = Rect2(0, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em1f6"]
+atlas = ExtResource("2_pt7hr")
+region = Rect2(192, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ameg2"]
+atlas = ExtResource("2_pt7hr")
+region = Rect2(384, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spytb"]
+atlas = ExtResource("2_pt7hr")
+region = Rect2(576, 1024, 192, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d77ii"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72mlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em1f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ameg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spytb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h57y5"]
+radius = 6.0
+
+[node name="LaundryPlayer" type="CharacterBody2D" unique_id=1659967272]
+script = ExtResource("1_7cfvj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1494247530]
+position = Vector2(-119, 22)
+scale = Vector2(0.14583334, 0.14583334)
+sprite_frames = SubResource("SpriteFrames_d77ii")
+autoplay = "default"
+frame_progress = 0.01863369
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1760782776]
+position = Vector2(-119, 33)
+shape = SubResource("CircleShape2D_h57y5")

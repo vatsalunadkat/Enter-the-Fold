@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bplkfknmm37j7"]
 
 [ext_resource type="Script" uid="uid://k0a6fgvoy7eh" path="res://scripts/ui/main_menu.gd" id="1_bqqt6"]
-[ext_resource type="Texture2D" uid="uid://dipmfjpx3ur1a" path="res://assets/background.jpg" id="2_wu84c"]
+[ext_resource type="Texture2D" uid="uid://b6k8qd0yewu1h" path="res://assets/main_menu_erick_wall.png" id="2_2wh52"]
 [ext_resource type="FontFile" uid="uid://bpw3njoo0k7xm" path="res://assets/Kingthings Trypewriter 2.ttf" id="3_8ln24"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
-texture = ExtResource("2_wu84c")
+texture = ExtResource("2_2wh52")
 modulate_color = Color(0.53032374, 0.56395483, 0.5638572, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]

@@ -16,7 +16,7 @@ func set_word(new_word: String):
 	update_display()
 
 
-func _process(delta):
+func _process(_delta):
 
 	if anchor_node != null:
 		global_position = anchor_node.global_position + Vector2(0, -50)
