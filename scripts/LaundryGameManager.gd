@@ -74,9 +74,6 @@ var day_over: bool = false
 
 const MAX_WAITING_DROPOFF := 3
 
-const MAX_SIMULTANEOUS := {
-	0: 1, 1: 2, 2: 3, 3: 3, 4: 3,
-}
 const SPAWN_DELAY := {
 	0: 20.0, 1: 14.0, 2: 10.0, 3: 7.0, 4: 5.0,
 }
@@ -255,6 +252,10 @@ func _on_spawn_timer_timeout() -> void:
 		spawn_timer.start(delay)
 
 func _spawn_customer() -> void:
+	var station_idx: int = _find_free_station()
+	if station_idx == -1:
+		return
+
 	var cid: int = next_cust_id
 	next_cust_id += 1
 	var scene_idx: int = randi() % customer_scenes.size()
@@ -263,10 +264,6 @@ func _spawn_customer() -> void:
 	cust.scale = Vector2(0.3, 0.3)
 	cust.name = "Customer_%d" % cid
 	add_child(cust)
-
-	var station_idx: int = _find_free_station()
-	if station_idx == -1:
-		return
 
 	var cdata := {
 		"node": cust,
@@ -339,17 +336,20 @@ func _on_prompt_completed(state_id: String) -> void:
 
 func _begin_pickup(cid: int) -> void:
 	var cd = active_customers[cid]
+	var station_idx: int = cd["station_idx"]
+	if station_idx < 0 or station_idx >= station_positions.size():
+		return
+	var station_pos: Vector2 = station_positions[station_idx]
 	# Free the drop-off slot as soon as pickup begins so another customer can spawn.
 	cd["station_idx"] = -1
 	cd["phase"] = CPhase.PLAYER_TO_STATION
 	cd["node"].leave_to(exit_pos)
-	_queue_player_action(func(): _player_walk_to_station(cid))
+	_queue_player_action(func(): _player_walk_to_station(cid, station_pos))
 
-func _player_walk_to_station(cid: int) -> void:
+func _player_walk_to_station(cid: int, station_pos: Vector2) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
-	var cd = active_customers[cid]
 	_update_hud_task("Walking to pick up laundry...")
-	_start_player_walk(station_positions[cd["station_idx"]], func(): _player_walk_to_washer(cid))
+	_start_player_walk(station_pos, func(): _player_walk_to_washer(cid))
 
 func _player_walk_to_washer(cid: int) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
