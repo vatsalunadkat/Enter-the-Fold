@@ -15,8 +15,12 @@ func _ready() -> void:
 	set_state(State.IDLE)
 
 func start_wash(duration: float = 10.0) -> void:
+	if current_state == State.RUNNING:
+		return
 	set_state(State.RUNNING)
 	await get_tree().create_timer(duration).timeout
+	if current_state != State.RUNNING:
+		return
 	set_state(State.DONE)
 
 func collect_laundry() -> void:
@@ -34,6 +38,8 @@ func set_state(new_state: State) -> void:
 			running_effect.state = "idle"
 			done_indicator.visible = false
 		State.RUNNING:
+			if _shake_tween:
+				_shake_tween.kill()
 			animated_sprite.play("idle")
 			running_effect.visible = true
 			running_effect.state = "running"

@@ -72,6 +72,8 @@ var money_earned_today: int = 0
 var day_running: bool = false
 var day_over: bool = false
 
+const MAX_WAITING_DROPOFF := 3
+
 const MAX_SIMULTANEOUS := {
 	0: 1, 1: 2, 2: 3, 3: 3, 4: 3,
 }
@@ -245,8 +247,8 @@ func _check_day_over() -> void:
 func _on_spawn_timer_timeout() -> void:
 	if not day_running:
 		return
-	var max_sim: int = MAX_SIMULTANEOUS.get(GameConfig.current_difficulty, 3)
-	if active_customers.size() < max_sim:
+	# Spawn only when a drop-off slot is available; this caps waiting customers to 3.
+	if _count_waiting_dropoff() < MAX_WAITING_DROPOFF and _find_free_station() != -1:
 		_spawn_customer()
 	if day_running:
 		var delay: float = SPAWN_DELAY.get(GameConfig.current_difficulty, 10.0)
@@ -263,14 +265,14 @@ func _spawn_customer() -> void:
 	add_child(cust)
 
 	var station_idx: int = _find_free_station()
-	var washer_idx: int = _find_free_idx(washer_busy)
-	if washer_idx == -1: washer_idx = 0
+	if station_idx == -1:
+		return
 
 	var cdata := {
 		"node": cust,
 		"phase": CPhase.WALKING_IN,
 		"station_idx": station_idx,
-		"washer_idx": washer_idx,
+		"washer_idx": -1,
 		"dryer_idx": -1,
 		"ironer_idx": -1,
 		"return_timer": null,
@@ -287,7 +289,14 @@ func _find_free_station() -> int:
 	for i in range(station_positions.size()):
 		if not used.has(i):
 			return i
-	return randi() % station_positions.size()
+	return -1
+
+func _count_waiting_dropoff() -> int:
+	var waiting := 0
+	for cdata in active_customers.values():
+		if cdata["station_idx"] >= 0:
+			waiting += 1
+	return waiting
 
 func _find_free_idx(busy_arr: Array) -> int:
 	for i in range(busy_arr.size()):
@@ -330,6 +339,8 @@ func _on_prompt_completed(state_id: String) -> void:
 
 func _begin_pickup(cid: int) -> void:
 	var cd = active_customers[cid]
+	# Free the drop-off slot as soon as pickup begins so another customer can spawn.
+	cd["station_idx"] = -1
 	cd["phase"] = CPhase.PLAYER_TO_STATION
 	cd["node"].leave_to(exit_pos)
 	_queue_player_action(func(): _player_walk_to_station(cid))
@@ -343,8 +354,16 @@ func _player_walk_to_station(cid: int) -> void:
 func _player_walk_to_washer(cid: int) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
 	var cd = active_customers[cid]
+	var wi: int = _find_free_idx(washer_busy)
+	if wi == -1:
+		_update_hud_task("No washer free yet. Waiting...")
+		get_tree().create_timer(0.5).timeout.connect(func():
+			if active_customers.has(cid):
+				_queue_player_action(func(): _player_walk_to_washer(cid))
+		)
+		return
+	cd["washer_idx"] = wi
 	cd["phase"] = CPhase.PLAYER_TO_WASHER
-	var wi: int = cd["washer_idx"]
 	washer_busy[wi] = true
 	_update_hud_task("Carrying laundry to washer %d..." % (wi + 1))
 	_start_player_walk(washers[wi].position, func(): _start_washing(cid))
@@ -364,7 +383,6 @@ func _on_wash_done(cid: int) -> void:
 	var cd = active_customers[cid]
 	cd["phase"] = CPhase.AWAITING_WASH_COLLECT
 	var wi: int = cd["washer_idx"]
-	washer_busy[wi] = false
 	var anchor = _make_anchor(washers[wi].position)
 	var word = _get_word()
 	prompt_manager.show_prompt(word, anchor, "washcollect_%d" % cid)
@@ -382,6 +400,7 @@ func _player_collect_washer(cid: int) -> void:
 	var cd = active_customers[cid]
 	var wi: int = cd["washer_idx"]
 	washers[wi].collect_laundry()
+	washer_busy[wi] = false
 	_update_hud_task("Collecting washed laundry...")
 	_start_player_walk(washers[wi].position, func(): _after_wash_collect(cid))
 
@@ -398,7 +417,13 @@ func _player_carry_to_dryer(cid: int) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
 	var cd = active_customers[cid]
 	var di: int = _find_free_idx(dryer_busy)
-	if di == -1: di = 0
+	if di == -1:
+		_update_hud_task("No dryer free yet. Waiting...")
+		get_tree().create_timer(0.5).timeout.connect(func():
+			if active_customers.has(cid):
+				_queue_player_action(func(): _player_carry_to_dryer(cid))
+		)
+		return
 	cd["dryer_idx"] = di
 	dryer_busy[di] = true
 	cd["phase"] = CPhase.PLAYER_TO_DRYER
@@ -420,7 +445,6 @@ func _on_dry_done(cid: int) -> void:
 	var cd = active_customers[cid]
 	cd["phase"] = CPhase.AWAITING_DRY_COLLECT
 	var di: int = cd["dryer_idx"]
-	dryer_busy[di] = false
 	var anchor = _make_anchor(dryers[di].position)
 	var word = _get_word()
 	prompt_manager.show_prompt(word, anchor, "drycollect_%d" % cid)
@@ -436,6 +460,7 @@ func _player_collect_dryer(cid: int) -> void:
 	var cd = active_customers[cid]
 	var di: int = cd["dryer_idx"]
 	dryers[di].collect_laundry()
+	dryer_busy[di] = false
 	_update_hud_task("Collecting dried laundry...")
 	_start_player_walk(dryers[di].position, func(): _after_dry_collect(cid))
 
@@ -452,7 +477,13 @@ func _player_carry_to_ironer(cid: int) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
 	var cd = active_customers[cid]
 	var ii: int = _find_free_idx(ironer_busy)
-	if ii == -1: ii = 0
+	if ii == -1:
+		_update_hud_task("No ironer free yet. Waiting...")
+		get_tree().create_timer(0.5).timeout.connect(func():
+			if active_customers.has(cid):
+				_queue_player_action(func(): _player_carry_to_ironer(cid))
+		)
+		return
 	cd["ironer_idx"] = ii
 	ironer_busy[ii] = true
 	cd["phase"] = CPhase.PLAYER_TO_IRONER
@@ -474,7 +505,6 @@ func _on_iron_done(cid: int) -> void:
 	var cd = active_customers[cid]
 	cd["phase"] = CPhase.AWAITING_IRON_COLLECT
 	var ii: int = cd["ironer_idx"]
-	ironer_busy[ii] = false
 	var anchor = _make_anchor(ironers[ii].position)
 	var word = _get_word()
 	prompt_manager.show_prompt(word, anchor, "ironcollect_%d" % cid)
@@ -490,6 +520,7 @@ func _player_collect_ironer(cid: int) -> void:
 	var cd = active_customers[cid]
 	var ii: int = cd["ironer_idx"]
 	ironers[ii].collect_laundry()
+	ironer_busy[ii] = false
 	_update_hud_task("Collecting ironed laundry...")
 	_start_player_walk(ironers[ii].position, func(): _player_carry_to_shelf(cid))
 
