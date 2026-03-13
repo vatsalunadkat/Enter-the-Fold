@@ -399,10 +399,16 @@ func _player_collect_washer(cid: int) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
 	var cd = active_customers[cid]
 	var wi: int = cd["washer_idx"]
-	washers[wi].collect_laundry()
-	washer_busy[wi] = false
 	_update_hud_task("Collecting washed laundry...")
-	_start_player_walk(washers[wi].position, func(): _after_wash_collect(cid))
+	_start_player_walk(washers[wi].position, func():
+		if not active_customers.has(cid):
+			return
+		var cd_arrive = active_customers[cid]
+		var wi_arrive: int = cd_arrive["washer_idx"]
+		washers[wi_arrive].collect_laundry()
+		washer_busy[wi_arrive] = false
+		_after_wash_collect(cid)
+	)
 
 func _after_wash_collect(cid: int) -> void:
 	if not active_customers.has(cid): return
@@ -459,10 +465,16 @@ func _player_collect_dryer(cid: int) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
 	var cd = active_customers[cid]
 	var di: int = cd["dryer_idx"]
-	dryers[di].collect_laundry()
-	dryer_busy[di] = false
 	_update_hud_task("Collecting dried laundry...")
-	_start_player_walk(dryers[di].position, func(): _after_dry_collect(cid))
+	_start_player_walk(dryers[di].position, func():
+		if not active_customers.has(cid):
+			return
+		var cd_arrive = active_customers[cid]
+		var di_arrive: int = cd_arrive["dryer_idx"]
+		dryers[di_arrive].collect_laundry()
+		dryer_busy[di_arrive] = false
+		_after_dry_collect(cid)
+	)
 
 func _after_dry_collect(cid: int) -> void:
 	if not active_customers.has(cid): return
@@ -519,10 +531,16 @@ func _player_collect_ironer(cid: int) -> void:
 	if not active_customers.has(cid): _finish_player_action(); return
 	var cd = active_customers[cid]
 	var ii: int = cd["ironer_idx"]
-	ironers[ii].collect_laundry()
-	ironer_busy[ii] = false
 	_update_hud_task("Collecting ironed laundry...")
-	_start_player_walk(ironers[ii].position, func(): _player_carry_to_shelf(cid))
+	_start_player_walk(ironers[ii].position, func():
+		if not active_customers.has(cid):
+			return
+		var cd_arrive = active_customers[cid]
+		var ii_arrive: int = cd_arrive["ironer_idx"]
+		ironers[ii_arrive].collect_laundry()
+		ironer_busy[ii_arrive] = false
+		_player_carry_to_shelf(cid)
+	)
 
 # ── SHELF → CUSTOMER RETURN ──
 
