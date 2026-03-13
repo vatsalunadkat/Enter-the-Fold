@@ -56,6 +56,7 @@ func enter_current_state():
 			print_to_text_label("Waiting for player to put laundry in machine." + "\n")
 
 		State.MACHINE_WASHING:
+			
 			print("Machine is washing for 10 seconds.")
 			print_to_text_label("Machine is washing for 10 seconds." + "\n")
 			$Timer.start(10)

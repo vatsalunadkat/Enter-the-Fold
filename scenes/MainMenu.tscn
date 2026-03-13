@@ -127,6 +127,8 @@ text = "Enter The Fold"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2095126418]
+
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
