@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Enter the Fold"
-run/main_scene="uid://bplkfknmm37j7"
+run/main_scene="uid://bo1i8ds4l0jaa"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -27,6 +27,7 @@ UpgradeManager="*res://scripts/autoload/UpgradeManager.gd"
 SceneRouter="*res://scripts/autoload/SceneRouter.gd"
 SceneFader="*res://scenes/SceneFader.tscn"
 Music="*uid://c2i0wlmjyfx61"
+AudioManager="*uid://1wrp5hvbdjhx"
 
 [display]
 
