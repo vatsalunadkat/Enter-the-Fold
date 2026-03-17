@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://82hb62gtc81l"]
 
 [ext_resource type="Script" uid="uid://bhvvfj2nugm71" path="res://scripts/ui/Settings.gd" id="1_5p8wc"]
+[ext_resource type="Theme" uid="uid://clo2e76b1b3w4" path="res://assets/themes/themes.tres" id="1_f4mfi"]
 [ext_resource type="Texture2D" uid="uid://b7w5vhd6873bh" path="res://assets/pb8s_s8g7_210608.jpg" id="2_r6d6q"]
 [ext_resource type="FontFile" uid="uid://bpw3njoo0k7xm" path="res://assets/Kingthings Trypewriter 2.ttf" id="3_6wm04"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_f4mfi")
 script = ExtResource("1_5p8wc")
 
 [node name="Background" type="TextureRect" parent="." unique_id=602509916]
@@ -51,7 +53,7 @@ layout_mode = 2
 alignment = 1
 expand_icon = true
 
-[node name="WordLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="WordLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1271434090]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.2702727, 0.21869728, 0.16804951, 1)
@@ -59,13 +61,13 @@ theme_override_fonts/font = ExtResource("3_6wm04")
 theme_override_font_sizes/font_size = 40
 text = "Word Difficulty"
 
-[node name="WordDifficultyOption" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+[node name="WordDifficultyOption" type="OptionButton" parent="MarginContainer/VBoxContainer" unique_id=782759592]
 custom_minimum_size = Vector2(320, 55)
 layout_mode = 2
 alignment = 1
 expand_icon = true
 
-[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1730364802]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.2702727, 0.21869728, 0.16804951, 1)
@@ -73,15 +75,14 @@ theme_override_fonts/font = ExtResource("3_6wm04")
 theme_override_font_sizes/font_size = 40
 text = "Music Volume"
 
-[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=1023371264]
 custom_minimum_size = Vector2(320, 30)
 layout_mode = 2
 min_value = -40.0
 max_value = 6.0
-step = 1.0
 value = -14.0
 
-[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1133636214]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.2702727, 0.21869728, 0.16804951, 1)
@@ -89,12 +90,11 @@ theme_override_fonts/font = ExtResource("3_6wm04")
 theme_override_font_sizes/font_size = 40
 text = "SFX Volume"
 
-[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=846765368]
 custom_minimum_size = Vector2(320, 30)
 layout_mode = 2
 min_value = -40.0
 max_value = 6.0
-step = 1.0
 value = 3.0
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1122712646]
