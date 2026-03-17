@@ -46,11 +46,11 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_7vrkn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=694392636]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.3
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.3
 offset_left = -176.0
 offset_top = -29.0
 offset_right = 156.875
@@ -109,11 +109,11 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="." unique_id=1866088633]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.3
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.3
 offset_left = -258.0
 offset_top = -214.0
 offset_right = 239.0
