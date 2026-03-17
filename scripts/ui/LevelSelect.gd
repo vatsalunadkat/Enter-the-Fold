@@ -43,4 +43,3 @@ func _on_endless_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	SceneRouter.go_to("res://scenes/MainMenu.tscn")
-

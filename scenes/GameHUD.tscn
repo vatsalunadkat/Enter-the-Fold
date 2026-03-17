@@ -42,20 +42,20 @@ text = "Customers: 0 / 0"
 horizontal_alignment = 1
 
 [node name="TaskBackdrop" type="ColorRect" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_top = 0.6
+anchor_bottom = 0.6
 offset_top = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.65)
 
 [node name="TaskLabel" type="Label" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_top = 0.6
+anchor_bottom = 0.6
 offset_top = -60.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -66,11 +66,11 @@ vertical_alignment = 1
 
 [node name="DayOverPanel" type="Panel" parent="."]
 visible = false
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.3
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.3
 offset_left = -200.0
 offset_top = -150.0
 offset_right = 200.0
