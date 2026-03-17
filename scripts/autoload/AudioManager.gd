@@ -6,8 +6,6 @@ const MAX_SFX_PLAYERS = 8
 
 var sfx_library: Dictionary = {}
 
-var music_volume: float = 0.8
-var sfx_volume: float = 1.0
 var music_enabled: bool = true
 var sfx_enabled: bool = true
 
@@ -22,6 +20,19 @@ func _ready() -> void:
 		player.bus = "SFX"
 		add_child(player)
 		sfx_players.append(player)
+
+	var music_bus_index = AudioServer.get_bus_index("Music")
+	if music_bus_index != -1:
+		AudioServer.set_bus_mute(music_bus_index, false)
+		AudioServer.set_bus_volume_db(music_bus_index, 0.0)
+
+	var sfx_bus_index = AudioServer.get_bus_index("SFX")
+	if sfx_bus_index != -1:
+		AudioServer.set_bus_mute(sfx_bus_index, false)
+		AudioServer.set_bus_volume_db(sfx_bus_index, 0.0)
+
+	print("AudioManager: Music bus index = ", music_bus_index)
+	print("AudioManager: SFX bus index = ", sfx_bus_index)
 
 	_load_sfx_library()
 	print("AudioManager: Loaded SFX count = ", sfx_library.size())
@@ -58,8 +69,10 @@ func play_music(track_path: String) -> void:
 
 	var stream = load(track_path) as AudioStream
 	if stream:
+		if music_player.playing:
+			music_player.stop()
+
 		music_player.stream = stream
-		music_player.volume_db = linear_to_db(music_volume)
 		music_player.play()
 
 
@@ -79,31 +92,27 @@ func play_sfx(sfx_name: String) -> void:
 	for player in sfx_players:
 		if not player.playing:
 			player.stream = sfx_library[sfx_name]
-			player.volume_db = linear_to_db(sfx_volume)
 			player.play()
 			print("AudioManager: Playing SFX -> ", sfx_name)
 			return
 
 	sfx_players[0].stream = sfx_library[sfx_name]
-	sfx_players[0].volume_db = linear_to_db(sfx_volume)
 	sfx_players[0].play()
 	print("AudioManager: Reused SFX player for -> ", sfx_name)
 
 
-func set_music_volume(vol: float) -> void:
-	music_volume = clamp(vol, 0.0, 1.0)
-	music_player.volume_db = linear_to_db(music_volume)
-
-
-func set_sfx_volume(vol: float) -> void:
-	sfx_volume = clamp(vol, 0.0, 1.0)
-
-
 func toggle_music(enabled: bool) -> void:
 	music_enabled = enabled
+	var bus_index = AudioServer.get_bus_index("Music")
+	if bus_index != -1:
+		AudioServer.set_bus_mute(bus_index, not enabled)
+
 	if not enabled:
 		stop_music()
 
 
 func toggle_sfx(enabled: bool) -> void:
 	sfx_enabled = enabled
+	var bus_index = AudioServer.get_bus_index("SFX")
+	if bus_index != -1:
+		AudioServer.set_bus_mute(bus_index, not enabled)

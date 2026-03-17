@@ -6,7 +6,10 @@ var customer2_scene = preload("res://scenes/customer_2.tscn")
 var customer3_scene = preload("res://scenes/customer_3.tscn")
 
 # run each of the customers sequentially
-func _ready():
+func _ready() -> void:
+	if not AudioManager.music_player.playing:
+		AudioManager.play_music("res://assets/audio/music/carefree.ogg")
+
 	await run_customer(customer1_scene)
 	await run_customer(customer2_scene)
 	await run_customer(customer3_scene)
