@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3syu5d7k768g"]
 
-[ext_resource type="Script" uid="uid://slvfya8vsuwy" path="res://scenes/clean_laundry_shelf.gd" id="1_gn13y"]
+[ext_resource type="Script" uid="uid://slvfya8vsuwy" path="res://scripts/clean_laundry_shelf.gd" id="1_gn13y"]
 [ext_resource type="Texture2D" uid="uid://bhupfi2tvtyfl" path="res://assets/ERICK_laundry_assets/empty_laundry_shelf.png" id="1_ijqpf"]
 [ext_resource type="Texture2D" uid="uid://bcripa4yilqp" path="res://assets/ERICK_laundry_assets/clean_laundry_shelf.png" id="2_gn13y"]
 

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://csra5cg0fc2fj"]
 
-[ext_resource type="Script" uid="uid://dfxgragamg3nj" path="res://scenes/cash_register.gd" id="1_ocjoc"]
+[ext_resource type="Script" uid="uid://dfxgragamg3nj" path="res://scripts/cash_register.gd" id="1_ocjoc"]
 [ext_resource type="Texture2D" uid="uid://dshxvh12lmv4u" path="res://assets/ERICK_laundry_assets/cash_register.png" id="1_qyy31"]
 [ext_resource type="Texture2D" uid="uid://dqev4a1pmqk5g" path="res://assets/ERICK_laundry_assets/dollar_sign.png" id="2_yqhqo"]
-[ext_resource type="Script" uid="uid://ct6ll53nfrtfp" path="res://scenes/running_effect.gd" id="3_yqhqo"]
+[ext_resource type="Script" uid="uid://ct6ll53nfrtfp" path="res://scripts/running_effect.gd" id="3_yqhqo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ocjoc"]
 atlas = ExtResource("1_qyy31")

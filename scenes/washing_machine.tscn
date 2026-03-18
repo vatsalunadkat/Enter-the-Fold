@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dkhxv1o2p2xn8"]
 
-[ext_resource type="Script" uid="uid://dnfjh7yw70l4r" path="res://scenes/washing_machine.gd" id="1_1vf26"]
+[ext_resource type="Script" uid="uid://dnfjh7yw70l4r" path="res://scripts/washing_machine.gd" id="1_1vf26"]
 [ext_resource type="Texture2D" uid="uid://cn2m8l6ungmow" path="res://assets/washine_machine.png" id="1_se0gy"]
 [ext_resource type="Texture2D" uid="uid://dfyimd7dkvny" path="res://assets/drum.png" id="2_1vf26"]
-[ext_resource type="Script" uid="uid://ct6ll53nfrtfp" path="res://scenes/running_effect.gd" id="3_fckx4"]
+[ext_resource type="Script" uid="uid://ct6ll53nfrtfp" path="res://scripts/running_effect.gd" id="3_fckx4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rcvbw"]
 atlas = ExtResource("1_se0gy")
