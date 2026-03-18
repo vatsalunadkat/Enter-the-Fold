@@ -261,7 +261,7 @@ func _spawn_customer() -> void:
 	var scene_idx: int = randi() % customer_scenes.size()
 	var cust = customer_scenes[scene_idx].instantiate()
 	cust.position = entrance_pos
-	cust.scale = Vector2(0.3, 0.3)
+	cust.scale = Vector2(0.43, 0.43)
 	cust.name = "Customer_%d" % cid
 	add_child(cust)
 
@@ -577,7 +577,7 @@ func _on_return_timer(cid: int) -> void:
 	if cust == null or not is_instance_valid(cust):
 		var scene_idx: int = randi() % customer_scenes.size()
 		cust = customer_scenes[scene_idx].instantiate()
-		cust.scale = Vector2(0.3, 0.3)
+		cust.scale = Vector2(0.43, 0.43)
 		cust.name = "Customer_%d_return" % cid
 		add_child(cust)
 		cd["node"] = cust
