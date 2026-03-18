@@ -114,7 +114,7 @@ func _setup_machines() -> void:
 		existing.queue_free()
 
 	# Washers — always present
-	var base_wash := Vector2(180, 350)
+	var base_wash := Vector2(240, 350)
 	for i in range(3):
 		var wm = washing_machine_scene.instantiate()
 		wm.position = base_wash + Vector2(i * 300, 0)
@@ -125,7 +125,7 @@ func _setup_machines() -> void:
 
 	# Dryers — level 2+
 	if current_level >= 2:
-		var base_dry := Vector2(180, 550)
+		var base_dry := Vector2(240, 550)
 		for i in range(3):
 			var dm = washing_machine_scene.instantiate()
 			dm.position = base_dry + Vector2(i * 300, 0)
@@ -136,7 +136,7 @@ func _setup_machines() -> void:
 
 	# Ironers — level 3+
 	if current_level >= 3:
-		var base_iron := Vector2(180, 750)
+		var base_iron := Vector2(240, 750)
 		for i in range(3):
 			var im = washing_machine_scene.instantiate()
 			im.position = base_iron + Vector2(i * 300, 0)
