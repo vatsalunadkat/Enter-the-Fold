@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6xx7p3de7r6r"
-path="res://.godot/imported/laundry_basket_empty.png-10e08b4e3dc60556842382ffcee91496.ctex"
+uid="uid://chcg6e3q8mcco"
+path="res://.godot/imported/dryer.png-20402d0897107e051a0f071d859c1984.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/laundry_basket_empty.png"
-dest_files=["res://.godot/imported/laundry_basket_empty.png-10e08b4e3dc60556842382ffcee91496.ctex"]
+source_file="res://assets/ERICK_laundry_assets/dryer.png"
+dest_files=["res://.godot/imported/dryer.png-20402d0897107e051a0f071d859c1984.ctex"]
 
 [params]
 

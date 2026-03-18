@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2f5lt4ec55sb"
-path="res://.godot/imported/laundry_basket_full.png-d043e3ac249b41ef5bcf2bca6050f3ea.ctex"
+uid="uid://bhupfi2tvtyfl"
+path="res://.godot/imported/empty_laundry_shelf.png-001d60ad4cc8ec35ec10454d0a280038.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/laundry_basket_full.png"
-dest_files=["res://.godot/imported/laundry_basket_full.png-d043e3ac249b41ef5bcf2bca6050f3ea.ctex"]
+source_file="res://assets/ERICK_laundry_assets/empty_laundry_shelf.png"
+dest_files=["res://.godot/imported/empty_laundry_shelf.png-001d60ad4cc8ec35ec10454d0a280038.ctex"]
 
 [params]
 

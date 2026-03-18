@@ -7,4 +7,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if state == "running":
-		rotation += delta * 3.0
+		rotation += delta * 5.0
