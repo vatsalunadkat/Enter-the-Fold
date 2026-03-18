@@ -29,7 +29,7 @@ func _input(event):
 
 	if event is InputEventKey and event.pressed and not event.echo:
 
-		# ⭐ BACKSPACE HANDLING (NEW)
+		# ⭐ BACKSPACE HANDLING
 		if event.keycode == KEY_BACKSPACE:
 
 			if focused_word != null:
@@ -43,7 +43,7 @@ func _input(event):
 			return
 
 
-		# ⭐ NORMAL CHARACTER INPUT (existing)
+		# ⭐ NORMAL CHARACTER INPUT
 		var char_input = char(event.unicode).to_lower()
 
 		if char_input == "":
