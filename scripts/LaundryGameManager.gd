@@ -101,7 +101,7 @@ func _setup_markers() -> void:
 	station_positions = [base_drop, base_drop + Vector2(0, 30), base_drop + Vector2(0, 60)]
 	shelf_pos = markers.get_node("ShelfSlot_1").position
 	counter_pos = markers.get_node("PickupCounter").position
-	exit_pos = entrance_pos + Vector2(-60, 0)
+	exit_pos = entrance_pos + Vector2(0, 960)
 
 func _setup_player() -> void:
 	player = get_node_or_null("LaundryPlayer")
@@ -114,10 +114,10 @@ func _setup_machines() -> void:
 		existing.queue_free()
 
 	# Washers — always present
-	var base_wash := Vector2(-108, -25)
+	var base_wash := Vector2(180, 350)
 	for i in range(3):
 		var wm = washing_machine_scene.instantiate()
-		wm.position = base_wash + Vector2(0, i * 30)
+		wm.position = base_wash + Vector2(i * 300, 0)
 		wm.name = "Washer_%d" % i
 		wm.set_process_input(false)
 		add_child(wm)
@@ -125,10 +125,10 @@ func _setup_machines() -> void:
 
 	# Dryers — level 2+
 	if current_level >= 2:
-		var base_dry := Vector2(-80, -25)
+		var base_dry := Vector2(180, 550)
 		for i in range(3):
 			var dm = washing_machine_scene.instantiate()
-			dm.position = base_dry + Vector2(0, i * 30)
+			dm.position = base_dry + Vector2(i * 300, 0)
 			dm.name = "Dryer_%d" % i
 			dm.set_process_input(false)
 			add_child(dm)
@@ -136,10 +136,10 @@ func _setup_machines() -> void:
 
 	# Ironers — level 3+
 	if current_level >= 3:
-		var base_iron := Vector2(-52, -25)
+		var base_iron := Vector2(180, 750)
 		for i in range(3):
 			var im = washing_machine_scene.instantiate()
-			im.position = base_iron + Vector2(0, i * 30)
+			im.position = base_iron + Vector2(i * 300, 0)
 			im.name = "Ironer_%d" % i
 			im.set_process_input(false)
 			add_child(im)
@@ -261,7 +261,7 @@ func _spawn_customer() -> void:
 	var scene_idx: int = randi() % customer_scenes.size()
 	var cust = customer_scenes[scene_idx].instantiate()
 	cust.position = entrance_pos
-	cust.scale = Vector2(0.3, 0.3)
+	cust.scale = Vector2(0.43, 0.43)
 	cust.name = "Customer_%d" % cid
 	add_child(cust)
 
@@ -577,7 +577,7 @@ func _on_return_timer(cid: int) -> void:
 	if cust == null or not is_instance_valid(cust):
 		var scene_idx: int = randi() % customer_scenes.size()
 		cust = customer_scenes[scene_idx].instantiate()
-		cust.scale = Vector2(0.3, 0.3)
+		cust.scale = Vector2(0.43, 0.43)
 		cust.name = "Customer_%d_return" % cid
 		add_child(cust)
 		cd["node"] = cust
