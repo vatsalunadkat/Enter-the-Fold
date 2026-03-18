@@ -26,13 +26,13 @@ script = ExtResource("1_1vf26")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1899322448]
 position = Vector2(1.9999999, 0)
-scale = Vector2(1.5000011, 1.7656246)
+scale = Vector2(3, 3.532)
 sprite_frames = SubResource("SpriteFrames_ehu1f")
 animation = &"idle"
 
 [node name="RunningEffect" type="Sprite2D" parent="." unique_id=905546904]
 position = Vector2(10, -20)
-scale = Vector2(2.1250002, 2.4023435)
+scale = Vector2(4.25, 4.804)
 texture = ExtResource("2_1vf26")
 script = ExtResource("3_fckx4")
 
