@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wmtem6nmddci"
-path="res://.godot/imported/drum.png-f73ceeefdfc66121700fb185ac2a2ee9.ctex"
+uid="uid://dqev4a1pmqk5g"
+path="res://.godot/imported/dollar_sign.png-802066cbea0223239c0092c17dc564b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/drum.png"
-dest_files=["res://.godot/imported/drum.png-f73ceeefdfc66121700fb185ac2a2ee9.ctex"]
+source_file="res://assets/ERICK_laundry_assets/dollar_sign.png"
+dest_files=["res://.godot/imported/dollar_sign.png-802066cbea0223239c0092c17dc564b3.ctex"]
 
 [params]
 

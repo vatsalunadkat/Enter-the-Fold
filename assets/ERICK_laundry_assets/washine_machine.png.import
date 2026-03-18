@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b62tx6qh5aabq"
-path="res://.godot/imported/washine_machine.png-9b264ec15ba22b861409af62fbb918e3.ctex"
+path="res://.godot/imported/washine_machine.png-a453246b3f8d9d4a33da3335fc1f170b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/washine_machine.png"
-dest_files=["res://.godot/imported/washine_machine.png-9b264ec15ba22b861409af62fbb918e3.ctex"]
+source_file="res://assets/ERICK_laundry_assets/washine_machine.png"
+dest_files=["res://.godot/imported/washine_machine.png-a453246b3f8d9d4a33da3335fc1f170b.ctex"]
 
 [params]
 

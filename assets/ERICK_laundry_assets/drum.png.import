@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmwtonnxs0r4e"
-path="res://.godot/imported/ironing_board.png-c342eaaf9649b2072dc7cd589d93ed01.ctex"
+uid="uid://wmtem6nmddci"
+path="res://.godot/imported/drum.png-8b7b6854774124634e23449f4f648662.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/ironing_board.png"
-dest_files=["res://.godot/imported/ironing_board.png-c342eaaf9649b2072dc7cd589d93ed01.ctex"]
+source_file="res://assets/ERICK_laundry_assets/drum.png"
+dest_files=["res://.godot/imported/drum.png-8b7b6854774124634e23449f4f648662.ctex"]
 
 [params]
 

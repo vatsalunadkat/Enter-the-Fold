@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c6lwmibf165eq"]
+
+[ext_resource type="Script" uid="uid://nye3dkl16h8k" path="res://scenes/dryer.gd" id="1_cqe11"]
+[ext_resource type="Texture2D" uid="uid://chcg6e3q8mcco" path="res://assets/ERICK_laundry_assets/dryer.png" id="2_3tob1"]
+[ext_resource type="Texture2D" uid="uid://qyammeqxjuig" path="res://assets/ERICK_laundry_assets/dryer_smoke.png" id="3_mcghn"]
+[ext_resource type="Script" uid="uid://clefdm0qcu610" path="res://scenes/dryersprite.gd" id="4_jv4bq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umn8t"]
+atlas = ExtResource("2_3tob1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qx2li"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umn8t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dryer" type="Node2D" unique_id=1165419840]
+position = Vector2(104, 168)
+script = ExtResource("1_cqe11")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=915100800]
+position = Vector2(0.49996525, 5.499983)
+scale = Vector2(1.5312482, 1.6562518)
+sprite_frames = SubResource("SpriteFrames_qx2li")
+
+[node name="RunningEffect" type="Sprite2D" parent="." unique_id=803699439]
+position = Vector2(8.000061, -11.999985)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("3_mcghn")
+script = ExtResource("4_jv4bq")
+
+[node name="DoneIndicator" type="Label" parent="." unique_id=1714571834]
+modulate = Color(1, 0.33333334, 0.2, 1)
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 17.0
+offset_bottom = -2.0
+theme_override_font_sizes/font_size = 10
+text = "Done!"

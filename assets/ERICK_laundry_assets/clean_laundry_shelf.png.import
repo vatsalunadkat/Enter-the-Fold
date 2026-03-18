@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7ijgwukyupy7"
-path="res://.godot/imported/counter.png-e0da9fa2b97062d8b368a7e01709f641.ctex"
+uid="uid://bcripa4yilqp"
+path="res://.godot/imported/clean_laundry_shelf.png-280412951899f56a2eb3122fcfa12ff6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/counter.png"
-dest_files=["res://.godot/imported/counter.png-e0da9fa2b97062d8b368a7e01709f641.ctex"]
+source_file="res://assets/ERICK_laundry_assets/clean_laundry_shelf.png"
+dest_files=["res://.godot/imported/clean_laundry_shelf.png-280412951899f56a2eb3122fcfa12ff6.ctex"]
 
 [params]
 

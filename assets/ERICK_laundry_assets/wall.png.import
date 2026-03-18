@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4mcbpxllsj1k"
-path="res://.godot/imported/drop_off.png-823f1deb58484877efcad23c9fb1d226.ctex"
+uid="uid://drf2sau5fgvuc"
+path="res://.godot/imported/wall.png-005aa1f40f309fdc9e4af34a5466570d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/drop_off.png"
-dest_files=["res://.godot/imported/drop_off.png-823f1deb58484877efcad23c9fb1d226.ctex"]
+source_file="res://assets/ERICK_laundry_assets/wall.png"
+dest_files=["res://.godot/imported/wall.png-005aa1f40f309fdc9e4af34a5466570d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dshxvh12lmv4u"
-path="res://.godot/imported/cash_register.png-7efda24d4d9283fa7cb4c43df3ac3f2c.ctex"
+uid="uid://qyammeqxjuig"
+path="res://.godot/imported/dryer_smoke.png-2b3c1419a92c4d5b269c9df9a79da376.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ERICK_assets/cash_register.png"
-dest_files=["res://.godot/imported/cash_register.png-7efda24d4d9283fa7cb4c43df3ac3f2c.ctex"]
+source_file="res://assets/ERICK_laundry_assets/dryer_smoke.png"
+dest_files=["res://.godot/imported/dryer_smoke.png-2b3c1419a92c4d5b269c9df9a79da376.ctex"]
 
 [params]
 

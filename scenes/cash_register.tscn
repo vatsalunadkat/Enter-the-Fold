@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://csra5cg0fc2fj"]
+
+[ext_resource type="Script" uid="uid://dfxgragamg3nj" path="res://scenes/cash_register.gd" id="1_ocjoc"]
+[ext_resource type="Texture2D" uid="uid://dshxvh12lmv4u" path="res://assets/ERICK_laundry_assets/cash_register.png" id="1_qyy31"]
+[ext_resource type="Texture2D" uid="uid://dqev4a1pmqk5g" path="res://assets/ERICK_laundry_assets/dollar_sign.png" id="2_yqhqo"]
+[ext_resource type="Script" uid="uid://ct6ll53nfrtfp" path="res://scenes/running_effect.gd" id="3_yqhqo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocjoc"]
+atlas = ExtResource("1_qyy31")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t562h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocjoc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="CashRegister" type="Node2D" unique_id=1922730149]
+position = Vector2(88, 72)
+script = ExtResource("1_ocjoc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380190328]
+scale = Vector2(5, 4.75)
+sprite_frames = SubResource("SpriteFrames_t562h")
+animation = &"idle"
+
+[node name="RunningEffect" type="Sprite2D" parent="." unique_id=322275838]
+position = Vector2(56, -56)
+texture = ExtResource("2_yqhqo")
+script = ExtResource("3_yqhqo")

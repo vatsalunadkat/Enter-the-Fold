@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c3syu5d7k768g"]
+
+[ext_resource type="Script" uid="uid://slvfya8vsuwy" path="res://scenes/clean_laundry_shelf.gd" id="1_gn13y"]
+[ext_resource type="Texture2D" uid="uid://bhupfi2tvtyfl" path="res://assets/ERICK_laundry_assets/empty_laundry_shelf.png" id="1_ijqpf"]
+[ext_resource type="Texture2D" uid="uid://bcripa4yilqp" path="res://assets/ERICK_laundry_assets/clean_laundry_shelf.png" id="2_gn13y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4j6f"]
+atlas = ExtResource("1_ijqpf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mhjt"]
+atlas = ExtResource("2_gn13y")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ubme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4j6f")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mhjt")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
+
+[node name="CleanLaundryShelf" type="Node2D" unique_id=1952229415]
+script = ExtResource("1_gn13y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927637516]
+sprite_frames = SubResource("SpriteFrames_6ubme")
+animation = &"empty"
+autoplay = "empty"
