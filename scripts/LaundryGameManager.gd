@@ -228,6 +228,10 @@ func _end_day() -> void:
 	day_timer.stop()
 	prompt_manager.clear_all_prompts()
 	_update_hud_task("Day over!")
+	
+	if GameConfig.endless_mode:
+		SaveManager.save_game()
+	
 	print("[Game] Day ended — served %d, earned $%d" % [customers_served, money_earned_today])
 	_show_end_of_day()
 

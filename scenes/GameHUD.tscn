@@ -1,60 +1,59 @@
 [gd_scene format=3 uid="uid://dqh8y2k6n3v5b"]
 
-[ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://djxyga6k61ve1" path="res://scripts/ui/GameHUD.gd" id="1_hud"]
 
-[node name="GameHUD" type="CanvasLayer"]
+[node name="GameHUD" type="CanvasLayer" unique_id=1550057767]
 layer = 10
 script = ExtResource("1_hud")
 
-[node name="TopBar" type="HBoxContainer" parent="."]
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=1912725051]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 50.0
 grow_horizontal = 2
 
-[node name="DayLabel" type="Label" parent="TopBar"]
-visible = false
+[node name="DayLabel" type="Label" parent="TopBar" unique_id=1511410471]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Day 1"
 horizontal_alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="TopBar"]
+[node name="MoneyLabel" type="Label" parent="TopBar" unique_id=100435403]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "$ 0"
 horizontal_alignment = 1
 
-[node name="TimeLabel" type="Label" parent="TopBar"]
+[node name="TimeLabel" type="Label" parent="TopBar" unique_id=301883226]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
 text = "8:00 AM"
 horizontal_alignment = 1
 
-[node name="CustomersLabel" type="Label" parent="TopBar"]
+[node name="CustomersLabel" type="Label" parent="TopBar" unique_id=1989448918]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Customers: 0 / 0"
 horizontal_alignment = 1
 
-[node name="TaskBackdrop" type="ColorRect" parent="."]
+[node name="TaskBackdrop" type="ColorRect" parent="." unique_id=546446362]
 anchors_preset = -1
-anchor_right = 1.0
 anchor_top = 0.6
+anchor_right = 1.0
 anchor_bottom = 0.6
 offset_top = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.65)
 
-[node name="TaskLabel" type="Label" parent="."]
+[node name="TaskLabel" type="Label" parent="." unique_id=57134202]
 anchors_preset = -1
-anchor_right = 1.0
 anchor_top = 0.6
+anchor_right = 1.0
 anchor_bottom = 0.6
 offset_top = -60.0
 grow_horizontal = 2
@@ -64,7 +63,7 @@ text = "Welcome to the laundry store!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DayOverPanel" type="Panel" parent="."]
+[node name="DayOverPanel" type="Panel" parent="." unique_id=350609676]
 visible = false
 anchors_preset = -1
 anchor_left = 0.5
@@ -78,7 +77,7 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="DayOverPanel"]
+[node name="VBox" type="VBoxContainer" parent="DayOverPanel" unique_id=601200536]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,32 +86,32 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="DayOverPanel/VBox"]
+[node name="Title" type="Label" parent="DayOverPanel/VBox" unique_id=1290923858]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Day Over!"
 horizontal_alignment = 1
 
-[node name="MoneyEarned" type="Label" parent="DayOverPanel/VBox"]
+[node name="MoneyEarned" type="Label" parent="DayOverPanel/VBox" unique_id=329167870]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Money earned: $0"
 horizontal_alignment = 1
 
-[node name="CustomersServed" type="Label" parent="DayOverPanel/VBox"]
+[node name="CustomersServed" type="Label" parent="DayOverPanel/VBox" unique_id=1499703567]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Customers served: 0 / 0"
 horizontal_alignment = 1
 
-[node name="ShopButton" type="Button" parent="DayOverPanel/VBox"]
+[node name="ShopButton" type="Button" parent="DayOverPanel/VBox" unique_id=1745212735]
 visible = false
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Continue to Shop"
 
-[node name="MenuButton" type="Button" parent="DayOverPanel/VBox"]
+[node name="MenuButton" type="Button" parent="DayOverPanel/VBox" unique_id=2096541071]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
