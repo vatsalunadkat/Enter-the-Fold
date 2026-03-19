@@ -39,48 +39,6 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uo0xe"]
-bg_color = Color(0.56734097, 0.50821507, 0.4056136, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp03w"]
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82unp"]
-bg_color = Color(0.49869084, 0.4530512, 0.40379998, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1c1a"]
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [node name="SelectLevel" type="Control" unique_id=360460702]
 layout_mode = 3
 anchors_preset = 15
@@ -206,33 +164,48 @@ theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Level 5"
 
+[node name="ContinueEndlessButton" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=41582523]
+modulate = Color(0.9691369, 0.9691369, 0.9691368, 1)
+custom_minimum_size = Vector2(260, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_j7xbu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_muyek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6org4")
+text = "Continue Endless"
+
 [node name="RightPanel" type="PanelContainer" parent="Panel/MainVBox/Cloumns" unique_id=626441043]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_adu0t")
 
-[node name="VBox" type="VBoxContainer" parent="Panel/MainVBox/Cloumns/RightPanel"]
+[node name="VBox" type="VBoxContainer" parent="Panel/MainVBox/Cloumns/RightPanel" unique_id=743063530]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="EndlessTitle" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox"]
+[node name="EndlessTitle" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox" unique_id=1238239954]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Endless Mode"
 horizontal_alignment = 1
 
-[node name="EndlessButton" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/VBox"]
+[node name="EndlessButton" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/VBox" unique_id=1781679035]
 custom_minimum_size = Vector2(260, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjqxc")
 text = "Play Endless"
 
-[node name="InfoBox" type="PanelContainer" parent="Panel/MainVBox/Cloumns/RightPanel/VBox"]
+[node name="InfoBox" type="PanelContainer" parent="Panel/MainVBox/Cloumns/RightPanel/VBox" unique_id=919234322]
 layout_mode = 2
 
-[node name="InfoLabel" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox/InfoBox"]
+[node name="InfoLabel" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox/InfoBox" unique_id=530944727]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14

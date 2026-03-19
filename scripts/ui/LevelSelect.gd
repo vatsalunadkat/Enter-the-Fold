@@ -20,6 +20,20 @@ func _ready() -> void:
 	var endless_btn = right_panel.get_node_or_null("VBox/EndlessButton") if right_panel else null
 	if endless_btn and not endless_btn.pressed.is_connected(_on_endless_button_pressed):
 		endless_btn.pressed.connect(_on_endless_button_pressed)
+		
+	# ⭐ NEW: Continue Endless Button Logic
+	var continue_btn = left_col.get_node_or_null("ContinueEndlessButton") if right_panel else null
+	if continue_btn:
+
+		# Show only if save exists
+		if SaveManager.save_exists():
+			continue_btn.visible = true
+
+			if not continue_btn.pressed.is_connected(_on_continue_endless_pressed):
+				continue_btn.pressed.connect(_on_continue_endless_pressed)
+
+		else:
+			continue_btn.visible = false
 
 func _on_level_1_button_pressed() -> void:
 	GameConfig.reset_endless()
@@ -38,9 +52,13 @@ func _on_level_3_button_pressed() -> void:
 
 func _on_endless_button_pressed() -> void:
 	GameConfig.start_endless_mode()
+	SaveManager.delete_save()
 	UpgradeManager.reset_all()  # Fresh start for endless
 	SceneRouter.go_to("res://scenes/LaundryStore.tscn")
 
 func _on_back_button_pressed() -> void:
 	SceneRouter.go_to("res://scenes/MainMenu.tscn")
-
+	
+func _on_continue_endless_pressed() -> void:
+	SaveManager.load_game()
+	SceneRouter.go_to("res://scenes/UpgradeShop.tscn")

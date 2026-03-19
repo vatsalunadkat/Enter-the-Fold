@@ -158,6 +158,19 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_abn1t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8ti4s")
 text = "Quit to Menu"
 
+[node name="SaveButton" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=1439258855]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.90939033, 0.9093903, 0.9093903, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_vd2mf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_abn1t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8ti4s")
+text = "Save Game"
+
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
