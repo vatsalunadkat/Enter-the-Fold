@@ -27,6 +27,7 @@ SceneRouter="*res://scripts/autoload/SceneRouter.gd"
 SceneFader="*res://scenes/SceneFader.tscn"
 UpgradeManager="*res://scripts/autoload/UpgradeManager.gd"
 Music="*uid://c2i0wlmjyfx61"
+SaveManager="*res://scripts/autoload/SaveManager.gd"
 
 [display]
 
