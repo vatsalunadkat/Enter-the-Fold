@@ -106,20 +106,19 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t2aad"]
-radius = 22.561028
+radius = 45.276924
 
 [node name="customer" type="CharacterBody2D" unique_id=99320947]
-z_index = 1
 script = ExtResource("1_xss0h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1161009151]
-position = Vector2(2, -61)
-scale = Vector2(0.47297356, 0.48257342)
+position = Vector2(1, -122.99999)
+scale = Vector2(0.979, 1)
 sprite_frames = SubResource("SpriteFrames_pm32s")
 animation = &"idle"
 autoplay = "walk_in"
 frame_progress = 0.7020345
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1119100369]
-position = Vector2(1, -29)
+position = Vector2(0, -50)
 shape = SubResource("CircleShape2D_t2aad")

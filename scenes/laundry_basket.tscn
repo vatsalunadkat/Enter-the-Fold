@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://2cc07gqe3hyc"]
+
+[ext_resource type="Script" uid="uid://b7wapdp78dinn" path="res://laundry_basket.gd" id="1_5towu"]
+[ext_resource type="Texture2D" uid="uid://b6xx7p3de7r6r" path="res://assets/ERICK_laundry_assets/laundry_basket_empty.png" id="2_a51rp"]
+[ext_resource type="Texture2D" uid="uid://d2f5lt4ec55sb" path="res://assets/ERICK_laundry_assets/laundry_basket_full.png" id="3_khswi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hlqf"]
+atlas = ExtResource("2_a51rp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guvrk"]
+atlas = ExtResource("3_khswi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gysrh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hlqf")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guvrk")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
+
+[node name="Laundry Basket" type="Node2D" unique_id=584841154]
+script = ExtResource("1_5towu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1021401743]
+position = Vector2(172, 100)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_gysrh")
+animation = &"empty"
+autoplay = "empty"

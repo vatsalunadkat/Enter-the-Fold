@@ -86,14 +86,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xa4ae"]
-radius = 24.083189
+radius = 26.0
 
 [node name="customer_3" type="CharacterBody2D" unique_id=1523173924]
 script = ExtResource("1_n18l1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=507290277]
-position = Vector2(0.7500012, -54.500004)
-scale = Vector2(0.8177083, 0.85156256)
+position = Vector2(3, -135)
+scale = Vector2(2, 2.084)
 sprite_frames = SubResource("SpriteFrames_pvoj6")
 animation = &"walk_in"
 autoplay = "walk_in"

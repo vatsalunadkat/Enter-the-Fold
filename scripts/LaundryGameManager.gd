@@ -114,7 +114,7 @@ func _setup_machines() -> void:
 		existing.queue_free()
 
 	# Washers — always present
-	var base_wash := Vector2(180, 350)
+	var base_wash := Vector2(240, 350)
 	for i in range(3):
 		var wm = washing_machine_scene.instantiate()
 		wm.position = base_wash + Vector2(i * 300, 0)
@@ -125,7 +125,7 @@ func _setup_machines() -> void:
 
 	# Dryers — level 2+
 	if current_level >= 2:
-		var base_dry := Vector2(180, 550)
+		var base_dry := Vector2(240, 550)
 		for i in range(3):
 			var dm = washing_machine_scene.instantiate()
 			dm.position = base_dry + Vector2(i * 300, 0)
@@ -136,7 +136,7 @@ func _setup_machines() -> void:
 
 	# Ironers — level 3+
 	if current_level >= 3:
-		var base_iron := Vector2(180, 750)
+		var base_iron := Vector2(240, 750)
 		for i in range(3):
 			var im = washing_machine_scene.instantiate()
 			im.position = base_iron + Vector2(i * 300, 0)
@@ -265,7 +265,7 @@ func _spawn_customer() -> void:
 	var scene_idx: int = randi() % customer_scenes.size()
 	var cust = customer_scenes[scene_idx].instantiate()
 	cust.position = entrance_pos
-	cust.scale = Vector2(0.3, 0.3)
+	cust.scale = Vector2(0.43, 0.43)
 	cust.name = "Customer_%d" % cid
 	add_child(cust)
 
@@ -581,7 +581,7 @@ func _on_return_timer(cid: int) -> void:
 	if cust == null or not is_instance_valid(cust):
 		var scene_idx: int = randi() % customer_scenes.size()
 		cust = customer_scenes[scene_idx].instantiate()
-		cust.scale = Vector2(0.3, 0.3)
+		cust.scale = Vector2(0.43, 0.43)
 		cust.name = "Customer_%d_return" % cid
 		add_child(cust)
 		cd["node"] = cust

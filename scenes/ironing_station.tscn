@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cy8uum83srvj6"]
+
+[ext_resource type="Script" uid="uid://bofwdasltn7c2" path="res://ironing_station.gd" id="1_a58jw"]
+[ext_resource type="Texture2D" uid="uid://bmwtonnxs0r4e" path="res://assets/ERICK_laundry_assets/ironing_board.png" id="2_whckx"]
+[ext_resource type="Texture2D" uid="uid://brajtw1cmbick" path="res://assets/ERICK_laundry_assets/iron.png" id="3_i5q2m"]
+[ext_resource type="Script" uid="uid://cvwl65sjbgkse" path="res://running_effect.gd" id="4_apges"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pliw"]
+atlas = ExtResource("2_whckx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5e5m2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pliw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="IroningStation" type="Node2D" unique_id=1414287864]
+position = Vector2(40, 32)
+script = ExtResource("1_a58jw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1782635353]
+position = Vector2(16, 16)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_5e5m2")
+animation = &"idle"
+
+[node name="RunningEffect" type="Sprite2D" parent="." unique_id=564490270]
+position = Vector2(24, 0)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_i5q2m")
+script = ExtResource("4_apges")
+
+[node name="DoneIndicator" type="Label" parent="." unique_id=1648722764]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 7.0
+theme_override_colors/font_color = Color(1, 0.33333334, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "Done!"
