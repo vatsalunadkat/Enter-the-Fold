@@ -7,6 +7,8 @@ var customer_scenes = [
 	preload("res://scenes/customer_3.tscn"),
 ]
 var washing_machine_scene = preload("res://scenes/washing_machine.tscn")
+var dryer_scene = preload("res://scenes/dryer.tscn")
+var ironer_scene = preload("res://scenes/ironing_station.tscn")
 var prompt_manager_scene = preload("res://scenes/PromptManager.tscn")
 
 # ─── Node references ───────────────────────────────────────────────
@@ -101,20 +103,20 @@ func _setup_markers() -> void:
 	station_positions = [base_drop, base_drop + Vector2(0, 30), base_drop + Vector2(0, 60)]
 	shelf_pos = markers.get_node("ShelfSlot_1").position
 	counter_pos = markers.get_node("PickupCounter").position
-	exit_pos = entrance_pos + Vector2(0, 960)
+	exit_pos = Vector2(900, 150)
 
 func _setup_player() -> void:
 	player = get_node_or_null("LaundryPlayer")
 	if player:
-		player_home_pos = player.position
+		player_home_pos = Vector2(540, 500)
 
 func _setup_machines() -> void:
 	var existing = $Markers.get_node_or_null("WashingMachine")
 	if existing:
 		existing.queue_free()
 
-	# Washers — always present
-	var base_wash := Vector2(240, 350)
+	# Washers — always present (top row: W-D-W-D-W-D, starting X=120, spacing 300)
+	var base_wash := Vector2(165, 550)
 	for i in range(3):
 		var wm = washing_machine_scene.instantiate()
 		wm.position = base_wash + Vector2(i * 300, 0)
@@ -123,22 +125,22 @@ func _setup_machines() -> void:
 		add_child(wm)
 		washers.append(wm)
 
-	# Dryers — level 2+
+	# Dryers — level 2+, top row interleaved with washers (offset 150px right of each washer)
 	if current_level >= 2:
-		var base_dry := Vector2(240, 550)
+		var base_dry := Vector2(315, 550)
 		for i in range(3):
-			var dm = washing_machine_scene.instantiate()
+			var dm = dryer_scene.instantiate()
 			dm.position = base_dry + Vector2(i * 300, 0)
 			dm.name = "Dryer_%d" % i
 			dm.set_process_input(false)
 			add_child(dm)
 			dryers.append(dm)
 
-	# Ironers — level 3+
+	# Ironers — level 3+, bottom row centered between each washer-dryer pair
 	if current_level >= 3:
 		var base_iron := Vector2(240, 750)
 		for i in range(3):
-			var im = washing_machine_scene.instantiate()
+			var im = ironer_scene.instantiate()
 			im.position = base_iron + Vector2(i * 300, 0)
 			im.name = "Ironer_%d" % i
 			im.set_process_input(false)
@@ -447,8 +449,8 @@ func _start_drying(cid: int) -> void:
 	var di: int = cd["dryer_idx"]
 	var dry_time: float = UpgradeManager.machine_speed
 	_update_hud_task("Dryer %d running... (%.0fs)" % [di + 1, dry_time])
-	dryers[di].wash_complete.connect(_on_dry_done.bind(cid), CONNECT_ONE_SHOT)
-	dryers[di].start_wash(dry_time)
+	dryers[di].dry_complete.connect(_on_dry_done.bind(cid), CONNECT_ONE_SHOT)
+	dryers[di].start_dry(dry_time)
 
 func _on_dry_done(cid: int) -> void:
 	if not active_customers.has(cid): return
@@ -513,8 +515,8 @@ func _start_ironing(cid: int) -> void:
 	var ii: int = cd["ironer_idx"]
 	var iron_time: float = UpgradeManager.machine_speed
 	_update_hud_task("Ironer %d running... (%.0fs)" % [ii + 1, iron_time])
-	ironers[ii].wash_complete.connect(_on_iron_done.bind(cid), CONNECT_ONE_SHOT)
-	ironers[ii].start_wash(iron_time)
+	ironers[ii].iron_complete.connect(_on_iron_done.bind(cid), CONNECT_ONE_SHOT)
+	ironers[ii].start_iron(iron_time)
 
 func _on_iron_done(cid: int) -> void:
 	if not active_customers.has(cid): return

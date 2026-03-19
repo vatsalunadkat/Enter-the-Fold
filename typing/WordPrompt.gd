@@ -11,8 +11,8 @@ var match_index := 0
 @export var anchor_node: Node2D
 
 # Font size tuned for readability on 6" portrait mobile screens
-const FONT_SIZE := 20
-const CHAR_WIDTH := 13
+const FONT_SIZE := 32
+const CHAR_WIDTH := 20
 const MIN_HALF_W := 36.0
 const PAD_H := 8.0  # horizontal padding beyond text
 const PAD_V := 5.0  # vertical padding
