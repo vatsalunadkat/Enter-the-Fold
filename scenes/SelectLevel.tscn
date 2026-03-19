@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://b8w3q1qqbiv3u"]
 
-[ext_resource type="Theme" uid="uid://clo2e76b1b3w4" path="res://assets/themes/themes.tres" id="1_6pd22"]
 [ext_resource type="Script" uid="uid://dafsl0yjcdlk6" path="res://scripts/ui/LevelSelect.gd" id="1_aredp"]
-[ext_resource type="Texture2D" uid="uid://b7w5vhd6873bh" path="res://assets/pb8s_s8g7_210608.jpg" id="2_muyek"]
 [ext_resource type="FontFile" uid="uid://bpw3njoo0k7xm" path="res://assets/Kingthings Trypewriter 2.ttf" id="3_6org4"]
+[ext_resource type="Texture2D" uid="uid://bn32sufsv3ay0" path="res://assets/selectLevel_background.png" id="3_adu0t"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6org4"]
-texture = ExtResource("2_muyek")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibsxg"]
+bg_color = Color(0.7985608, 0.7294262, 0.65421134, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pd22"]
 bg_color = Color(0.70419514, 0.8405714, 0.9766993, 1)
@@ -19,10 +26,8 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-expand_margin_left = 16.0
-expand_margin_top = 10.0
-expand_margin_right = 16.0
-expand_margin_bottom = 16.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adu0t"]
 bg_color = Color(0.95307964, 0.8294966, 0.4263327, 1)
@@ -35,13 +40,11 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-expand_margin_left = 16.0
-expand_margin_top = 10.0
-expand_margin_right = 16.0
-expand_margin_bottom = 16.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjqxc"]
-bg_color = Color(0.76504475, 0.543471, 0.82242084, 1)
+bg_color = Color(0.5856313, 0.6428576, 0.74931663, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -51,13 +54,22 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-expand_margin_left = 16.0
-expand_margin_top = 10.0
-expand_margin_right = 16.0
-expand_margin_bottom = 16.0
+expand_margin_top = 14.0
+expand_margin_bottom = 15.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82unp"]
-bg_color = Color(0.6819274, 0.55292666, 0.6651804, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlyyc"]
+bg_color = Color(0.49186343, 0.6828618, 0.67383426, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18039216, 0.43529412, 0.62352943, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_top = 14.0
+expand_margin_bottom = 15.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uo0xe"]
 bg_color = Color(0.45906854, 0.71799743, 0.5998601, 1)
@@ -75,11 +87,8 @@ expand_margin_top = 10.0
 expand_margin_right = 16.0
 expand_margin_bottom = 16.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1c1a"]
-bg_color = Color(0.80085087, 0.6479343, 0.7677379, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp03w"]
-bg_color = Color(0.70437783, 0.5512509, 0.62023145, 1)
+bg_color = Color(0.670842, 0.5472565, 0.7446245, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -103,144 +112,156 @@ offset_top = 13.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_6pd22")
 script = ExtResource("1_aredp")
 
-[node name="Panel" type="Panel" parent="." unique_id=1186061464]
+[node name="Background" type="TextureRect" parent="." unique_id=421248230]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_6org4")
+mouse_filter = 2
+texture = ExtResource("3_adu0t")
+stretch_mode = 6
 
-[node name="MainVBox" type="VBoxContainer" parent="Panel" unique_id=108026046]
-modulate = Color(0.73300546, 0.7330054, 0.7330054, 1)
+[node name="MainMargin" type="MarginContainer" parent="." unique_id=746427949]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.3
-anchor_right = 0.5
-anchor_bottom = 0.3
-offset_left = -300.0
-offset_top = -350.0
-offset_right = 300.0
-offset_bottom = 350.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 578.0
+offset_right = -66.0
+offset_bottom = -402.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
-alignment = 1
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 36
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/MainVBox" unique_id=623302987]
-layout_mode = 2
-
-[node name="SelectTitleLabel" type="Label" parent="Panel/MainVBox" unique_id=386327772]
-layout_mode = 2
+[node name="MenuCard" type="PanelContainer" parent="." unique_id=1996941872]
+custom_minimum_size = Vector2(350, 580)
+layout_mode = 0
+offset_left = 222.0
+offset_top = 715.0
+offset_right = 841.0
+offset_bottom = 1383.0
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.21296626, 0.3044058, 0.17020112, 1)
-theme_override_colors/font_shadow_color = Color(0.46286213, 0.5704796, 0.20846131, 0)
-theme_override_fonts/font = ExtResource("3_6org4")
-theme_override_font_sizes/font_size = 70
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibsxg")
+
+[node name="CardPadding" type="MarginContainer" parent="MenuCard" unique_id=607423639]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="MainVBox" type="VBoxContainer" parent="MenuCard/CardPadding" unique_id=163743257]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="SelectLevel" type="Label" parent="MenuCard/CardPadding/MainVBox" unique_id=1309638781]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.015353734, 0.23426238, 0.095329456, 1)
+theme_override_font_sizes/font_size = 40
 text = "Select Level"
-
-[node name="Cloumns" type="HBoxContainer" parent="Panel/MainVBox" unique_id=915221487]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 66
-alignment = 1
-
-[node name="leftPanel" type="PanelContainer" parent="Panel/MainVBox/Cloumns" unique_id=1460239216]
-layout_mode = 2
-
-[node name="LeftColumns" type="VBoxContainer" parent="Panel/MainVBox/Cloumns/leftPanel" unique_id=454600510]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 38
-
-[node name="Level1Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1845406354]
-custom_minimum_size = Vector2(260, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_6pd22")
-text = "Level 1"
-
-[node name="Level2Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1285295993]
-custom_minimum_size = Vector2(260, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_adu0t")
-text = "Level 2"
-
-[node name="Level3Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1705388554]
-modulate = Color(0.9691369, 0.9691369, 0.9691368, 1)
-custom_minimum_size = Vector2(260, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_jjqxc")
-text = "Level 3"
-
-[node name="Level4Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1493711480]
-visible = false
-custom_minimum_size = Vector2(260, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-disabled = true
-text = "Level 4"
-
-[node name="Level5Button" type="Button" parent="Panel/MainVBox/Cloumns/leftPanel/LeftColumns" unique_id=1355528510]
-visible = false
-custom_minimum_size = Vector2(260, 60)
-layout_mode = 2
-disabled = true
-text = "Level 5"
-
-[node name="RightPanel" type="PanelContainer" parent="Panel/MainVBox/Cloumns" unique_id=626441043]
-layout_mode = 2
-
-[node name="VBox" type="VBoxContainer" parent="Panel/MainVBox/Cloumns/RightPanel" unique_id=1356148863]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 33
-alignment = 1
-
-[node name="EndlessTitle" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox" unique_id=1269906587]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_82unp")
-text = "Endless Mode"
 horizontal_alignment = 1
 
-[node name="EndlessButton" type="Button" parent="Panel/MainVBox/Cloumns/RightPanel/VBox" unique_id=1969155922]
-custom_minimum_size = Vector2(260, 60)
+[node name="LevelsBox" type="VBoxContainer" parent="MenuCard/CardPadding/MainVBox" unique_id=396864137]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Level1Button" type="Button" parent="MenuCard/CardPadding/MainVBox/LevelsBox" unique_id=1845406354]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_uo0xe")
-text = "Play Endless"
+theme_override_constants/h_separation = 8
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_6pd22")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6pd22")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6pd22")
+text = "Level 1"
 
-[node name="InfoBox" type="PanelContainer" parent="Panel/MainVBox/Cloumns/RightPanel/VBox" unique_id=1599440994]
+[node name="Level2Button" type="Button" parent="MenuCard/CardPadding/MainVBox/LevelsBox" unique_id=1285295993]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_i1c1a")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 8
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_adu0t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_adu0t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_adu0t")
+text = "Level 2"
 
-[node name="InfoLabel" type="Label" parent="Panel/MainVBox/Cloumns/RightPanel/VBox/InfoBox" unique_id=163177816]
-custom_minimum_size = Vector2(240, 0)
+[node name="Level3Button" type="Button" parent="MenuCard/CardPadding/MainVBox/LevelsBox" unique_id=1705388554]
+modulate = Color(0.9691369, 0.9691369, 0.9691368, 1)
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Keep playing day after day!
-Upgrade your laundromat
-between days with your
-earnings. How long can
-you keep up?"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_jjqxc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jjqxc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jjqxc")
+text = "Level 3"
+
+[node name="ContinueEndlessButton" type="Button" parent="MenuCard/CardPadding/MainVBox/LevelsBox" unique_id=303528507]
+modulate = Color(0.9691369, 0.9691369, 0.9691368, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_xlyyc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jjqxc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jjqxc")
+text = "Continue Endless Button"
+
+[node name="SectionDivider" type="HSeparator" parent="MenuCard/CardPadding/MainVBox" unique_id=609294210]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="EndlessBox" type="VBoxContainer" parent="MenuCard/CardPadding/MainVBox" unique_id=1842024389]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="EndlessLabel" type="Label" parent="MenuCard/CardPadding/MainVBox/EndlessBox" unique_id=556093662]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Endless mode, Keep playing as long as you can and see how high of a score you can achieve."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BackButton" type="Button" parent="Panel/MainVBox" unique_id=773277582]
+[node name="EndlessButton" type="Button" parent="MenuCard/CardPadding/MainVBox/EndlessBox" unique_id=1969155922]
+custom_minimum_size = Vector2(260, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_uo0xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uo0xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uo0xe")
+text = "Play Endless"
+
+[node name="BottomSpacer" type="Control" parent="MenuCard/CardPadding/MainVBox" unique_id=190017074]
+custom_minimum_size = Vector2(20, 8)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MenuCard/CardPadding/MainVBox" unique_id=773277582]
+custom_minimum_size = Vector2(110, 44)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6org4")
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_vp03w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vp03w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vp03w")
 text = "Back"
 
-[connection signal="pressed" from="Panel/MainVBox/Cloumns/leftPanel/LeftColumns/Level1Button" to="." method="_on_level_1_button_pressed"]
-[connection signal="pressed" from="Panel/MainVBox/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuCard/CardPadding/MainVBox/LevelsBox/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="MenuCard/CardPadding/MainVBox/LevelsBox/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="MenuCard/CardPadding/MainVBox/LevelsBox/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="MenuCard/CardPadding/MainVBox/EndlessBox/EndlessButton" to="." method="_on_endless_button_pressed"]
+[connection signal="pressed" from="MenuCard/CardPadding/MainVBox/BackButton" to="." method="_on_back_button_pressed"]
