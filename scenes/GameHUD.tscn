@@ -45,6 +45,7 @@ grow_vertical = 0
 color = Color(0, 0, 0, 0.65)
 
 [node name="DayOverPanel" type="Panel" parent="." unique_id=1257074313]
+visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.3
@@ -94,13 +95,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Continue to Shop"
 
-[node name="MenuButton" type="Button" parent="DayOverPanel/VBox" unique_id=2096541071]
-visible = false
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Back to Menu"
-
 [node name="TopBarPanel" type="PanelContainer" parent="." unique_id=1325252263]
 anchors_preset = 10
 anchor_right = 1.0
@@ -143,6 +137,12 @@ theme_override_font_sizes/font_size = 22
 text = "Served: 0"
 horizontal_alignment = 1
 
+[node name="MenuButton" type="Button" parent="TopBarPanel/TopBar" unique_id=2096541071]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "☰"
+
 [node name="TaskPanel" type="PanelContainer" parent="." unique_id=1936934019]
 anchors_preset = -1
 anchor_top = 0.6
@@ -164,3 +164,5 @@ theme_override_font_sizes/font_size = 30
 text = "Task: Wash blue shirt"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="TopBarPanel/TopBar/MenuButton" to="." method="_on_menu_button_pressed"]
