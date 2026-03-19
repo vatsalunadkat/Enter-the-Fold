@@ -263,5 +263,6 @@ text = "Back"
 [connection signal="pressed" from="MenuCard/CardPadding/MainVBox/LevelsBox/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="MenuCard/CardPadding/MainVBox/LevelsBox/Level2Button" to="." method="_on_level_2_button_pressed"]
 [connection signal="pressed" from="MenuCard/CardPadding/MainVBox/LevelsBox/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="MenuCard/CardPadding/MainVBox/LevelsBox/ContinueEndlessButton" to="." method="_on_continue_endless_button_pressed"]
 [connection signal="pressed" from="MenuCard/CardPadding/MainVBox/EndlessBox/EndlessButton" to="." method="_on_endless_button_pressed"]
 [connection signal="pressed" from="MenuCard/CardPadding/MainVBox/BackButton" to="." method="_on_back_button_pressed"]
