@@ -177,14 +177,14 @@ text = "Quit to Menu"
 [node name="SavingGame" type="CenterContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1202669465]
 layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/SavingGame" unique_id=567560198]
+[node name="SavButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/SavingGame" unique_id=567560198]
 custom_minimum_size = Vector2(260, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_40atx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jiu6o")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jiu6o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_40atx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_40atx")
 text = "Save Game"
 
 [connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/Resumcenter/ResumeButton" to="." method="_on_resume_button_pressed"]
