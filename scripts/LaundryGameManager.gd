@@ -5,6 +5,12 @@ var customer_scenes = [
 	preload("res://scenes/customer.tscn"),
 	preload("res://scenes/customer_2.tscn"),
 	preload("res://scenes/customer_3.tscn"),
+	preload("res://scenes/customer_4.tscn"),
+	preload("res://scenes/customer_5.tscn"),
+	preload("res://scenes/customer_6.tscn"),
+	preload("res://scenes/customer_7.tscn"),
+	preload("res://scenes/customer_8.tscn"),
+	preload("res://scenes/customer_9.tscn"),
 ]
 var washing_machine_scene = preload("res://scenes/washing_machine.tscn")
 var prompt_manager_scene = preload("res://scenes/PromptManager.tscn")
