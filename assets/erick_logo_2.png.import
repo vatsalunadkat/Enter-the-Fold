@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhu1247imeu2d"
-path="res://.godot/imported/erick_background.png-e834e52d290c888eebf6429e78d80722.ctex"
+uid="uid://dt2dd4n4fbb42"
+path="res://.godot/imported/erick_logo_2.png-edc4be378acb4510da9dca37b8a95958.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/erick_background.png"
-dest_files=["res://.godot/imported/erick_background.png-e834e52d290c888eebf6429e78d80722.ctex"]
+source_file="res://assets/erick_logo_2.png"
+dest_files=["res://.godot/imported/erick_logo_2.png-edc4be378acb4510da9dca37b8a95958.ctex"]
 
 [params]
 

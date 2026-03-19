@@ -1,10 +1,10 @@
 extends Control
 
 # UI nodes
-@onready var difficulty_option: OptionButton = $MarginContainer/VBoxContainer/DifficultyOption
-@onready var word_difficulty_option: OptionButton = $MarginContainer/VBoxContainer/WordDifficultyOption
-@onready var music_slider: HSlider = $MarginContainer/VBoxContainer/MusicSlider
-@onready var sfx_slider: HSlider = $MarginContainer/VBoxContainer/SFXSlider
+@onready var difficulty_option: OptionButton = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/DifficultyRow/DifficultyOption
+@onready var word_difficulty_option: OptionButton = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/WordDifficulty/WordDifficultyOption
+@onready var music_slider: HSlider = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MusicSlider
+@onready var sfx_slider: HSlider = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SFXSlider
 
 const SETTINGS_PATH := "user://settings.cfg"
 
