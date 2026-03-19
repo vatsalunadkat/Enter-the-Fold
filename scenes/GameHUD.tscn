@@ -6,7 +6,7 @@
 content_margin_left = 12.0
 content_margin_top = 25.0
 content_margin_right = 12.0
-content_margin_bottom = 15.0
+content_margin_bottom = 25.0
 bg_color = Color(0.07058824, 0.09411765, 0.11764706, 0.7647059)
 border_width_left = 2
 border_width_top = 2
@@ -17,6 +17,18 @@ corner_radius_top_left = 18
 corner_radius_top_right = 18
 corner_radius_bottom_right = 18
 corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0bmq"]
+bg_color = Color(0.25401747, 0.1927242, 0.21634409, 0.8156863)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_size = 2
 
 [node name="GameHUD" type="CanvasLayer" unique_id=1550057767]
 layer = 10
@@ -32,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.65)
 
-[node name="DayOverPanel" type="Panel" parent="." unique_id=350609676]
+[node name="DayOverPanel" type="Panel" parent="." unique_id=1257074313]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.3
@@ -46,39 +58,44 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBox" type="VBoxContainer" parent="DayOverPanel" unique_id=601200536]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+visible = false
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="DayOverPanel/VBox" unique_id=1290923858]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Day Over!"
 horizontal_alignment = 1
 
 [node name="MoneyEarned" type="Label" parent="DayOverPanel/VBox" unique_id=329167870]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Money earned: $0"
 horizontal_alignment = 1
 
 [node name="CustomersServed" type="Label" parent="DayOverPanel/VBox" unique_id=1499703567]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Customers served: 0 / 0"
 horizontal_alignment = 1
 
 [node name="ShopButton" type="Button" parent="DayOverPanel/VBox" unique_id=1745212735]
+visible = false
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Continue to Shop"
 
 [node name="MenuButton" type="Button" parent="DayOverPanel/VBox" unique_id=2096541071]
+visible = false
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -87,7 +104,7 @@ text = "Back to Menu"
 [node name="TopBarPanel" type="PanelContainer" parent="." unique_id=1325252263]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 34.0
+offset_bottom = 86.0
 grow_horizontal = 2
 pivot_offset = Vector2(1080, 52)
 theme_override_styles/panel = SubResource("StyleBoxFlat_kr2c0")
@@ -126,11 +143,24 @@ theme_override_font_sizes/font_size = 22
 text = "Served: 0"
 horizontal_alignment = 1
 
-[node name="TaskLabel" type="Label" parent="TopBarPanel/TopBar" unique_id=57134202]
-custom_minimum_size = Vector2(190, 36)
+[node name="TaskPanel" type="PanelContainer" parent="." unique_id=1936934019]
+anchors_preset = -1
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.6
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o0bmq")
+
+[node name="TaskLabel" type="Label" parent="TaskPanel" unique_id=57134202]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.95686275, 0.94509804, 0.9098039, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 30
 text = "Task: Wash blue shirt"
 horizontal_alignment = 1
 vertical_alignment = 1
