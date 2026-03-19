@@ -23,16 +23,19 @@ buses/default_bus_layout="uid://cous8jjgpw6u2"
 
 GameState="*res://scripts/game_state.gd"
 GameConfig="*res://scripts/autoload/GameConfig.gd"
-UpgradeManager="*res://scripts/autoload/UpgradeManager.gd"
 SceneRouter="*res://scripts/autoload/SceneRouter.gd"
 SceneFader="*res://scenes/SceneFader.tscn"
+UpgradeManager="*res://scripts/autoload/UpgradeManager.gd"
 Music="*uid://c2i0wlmjyfx61"
+AudioManager="*uid://1wrp5hvbdjhx"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1080
+window/size/viewport_height=1920
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/handheld/orientation="portrait"
 
 [input]
 
