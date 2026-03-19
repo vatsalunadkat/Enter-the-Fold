@@ -1,15 +1,15 @@
 extends CanvasLayer
 
-@onready var money_label: Label = $TopBar/MoneyLabel
-@onready var time_label: Label = $TopBar/TimeLabel
-@onready var customers_label: Label = $TopBar/CustomersLabel
-@onready var task_label: Label = $TaskLabel
+@onready var money_label: Label = $TopBarPanel/TopBar/MoneyLabel
+@onready var time_label: Label = $TopBarPanel/TopBar/TimeLabel
+@onready var customers_label: Label = $TopBarPanel/TopBar/CustomersLabel
+@onready var task_label: Label = $TopBarPanel/TopBar/TaskLabel
 @onready var day_over_panel: Panel = $DayOverPanel
 @onready var day_over_money: Label = $DayOverPanel/VBox/MoneyEarned
 @onready var day_over_served: Label = $DayOverPanel/VBox/CustomersServed
 @onready var menu_button: Button = $DayOverPanel/VBox/MenuButton
 @onready var shop_button: Button = $DayOverPanel/VBox/ShopButton
-@onready var day_label: Label = $TopBar/DayLabel
+@onready var day_label: Label = $TopBarPanel/TopBar/DayLabel
 
 func _ready() -> void:
 	day_over_panel.visible = false

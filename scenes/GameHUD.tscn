@@ -2,43 +2,25 @@
 
 [ext_resource type="Script" uid="uid://djxyga6k61ve1" path="res://scripts/ui/GameHUD.gd" id="1_hud"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kr2c0"]
+content_margin_left = 12.0
+content_margin_top = 25.0
+content_margin_right = 12.0
+content_margin_bottom = 15.0
+bg_color = Color(0.07058824, 0.09411765, 0.11764706, 0.7647059)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.47058824, 0.84313726, 1, 0.27450982)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
 [node name="GameHUD" type="CanvasLayer" unique_id=1550057767]
 layer = 10
 script = ExtResource("1_hud")
-
-[node name="TopBar" type="HBoxContainer" parent="." unique_id=1912725051]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 50.0
-grow_horizontal = 2
-
-[node name="DayLabel" type="Label" parent="TopBar" unique_id=1511410471]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Day 1"
-horizontal_alignment = 1
-
-[node name="MoneyLabel" type="Label" parent="TopBar" unique_id=100435403]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "$ 0"
-horizontal_alignment = 1
-
-[node name="TimeLabel" type="Label" parent="TopBar" unique_id=301883226]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 22
-text = "8:00 AM"
-horizontal_alignment = 1
-
-[node name="CustomersLabel" type="Label" parent="TopBar" unique_id=1989448918]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Customers: 0 / 0"
-horizontal_alignment = 1
 
 [node name="TaskBackdrop" type="ColorRect" parent="." unique_id=546446362]
 anchors_preset = -1
@@ -50,21 +32,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.65)
 
-[node name="TaskLabel" type="Label" parent="." unique_id=57134202]
-anchors_preset = -1
-anchor_top = 0.6
-anchor_right = 1.0
-anchor_bottom = 0.6
-offset_top = -60.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Welcome to the laundry store!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="DayOverPanel" type="Panel" parent="." unique_id=350609676]
-visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.3
@@ -105,7 +73,6 @@ text = "Customers served: 0 / 0"
 horizontal_alignment = 1
 
 [node name="ShopButton" type="Button" parent="DayOverPanel/VBox" unique_id=1745212735]
-visible = false
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -116,3 +83,54 @@ custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back to Menu"
+
+[node name="TopBarPanel" type="PanelContainer" parent="." unique_id=1325252263]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+pivot_offset = Vector2(1080, 52)
+theme_override_styles/panel = SubResource("StyleBoxFlat_kr2c0")
+
+[node name="TopBar" type="HBoxContainer" parent="TopBarPanel" unique_id=1912725051]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="DayLabel" type="Label" parent="TopBarPanel/TopBar" unique_id=1511410471]
+custom_minimum_size = Vector2(74, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Day 1"
+horizontal_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="TopBarPanel/TopBar" unique_id=100435403]
+custom_minimum_size = Vector2(82, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "$ 0"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="TopBarPanel/TopBar" unique_id=301883226]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "8:00 AM"
+horizontal_alignment = 1
+
+[node name="CustomersLabel" type="Label" parent="TopBarPanel/TopBar" unique_id=1989448918]
+custom_minimum_size = Vector2(136, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Served: 0"
+horizontal_alignment = 1
+
+[node name="TaskLabel" type="Label" parent="TopBarPanel/TopBar" unique_id=57134202]
+custom_minimum_size = Vector2(190, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Task: Wash blue shirt"
+horizontal_alignment = 1
+vertical_alignment = 1
