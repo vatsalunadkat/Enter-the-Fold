@@ -8,3 +8,11 @@ script = ExtResource("1_t281r")
 
 [node name="TypingManager" type="Node2D" parent="." unique_id=1436859450]
 script = ExtResource("3_l8v67")
+
+[node name="KeyboardCapture" type="LineEdit" parent="."]
+offset_left = -9999.0
+offset_top = -9999.0
+offset_right = -9998.0
+offset_bottom = -9998.0
+mouse_filter = 2
+virtual_keyboard_enabled = true

@@ -20,6 +20,12 @@ func toggle_pause() -> void:
 	visible = !visible
 	get_tree().paused = visible
 	save_button.text = "Save Game"
+	var pm = get_tree().get_first_node_in_group("prompt_manager")
+	if pm:
+		if visible:
+			pm.hide_keyboard()
+		else:
+			pm.show_keyboard()
 
 func _on_resume_button_pressed() -> void:
 	toggle_pause()
