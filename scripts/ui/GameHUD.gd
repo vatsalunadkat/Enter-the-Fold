@@ -60,4 +60,3 @@ func _on_menu_pressed() -> void:
 func _on_shop_pressed() -> void:
 	get_tree().paused = false
 	SceneRouter.go_to("res://scenes/UpgradeShop.tscn")
-

@@ -9,6 +9,7 @@ var _walking: bool = false
 @onready var sprite := $AnimatedSprite2D
 
 func _ready() -> void:
+	scale = Vector2(0.39, 0.39)
 	sprite.stop()
 	sprite.frame = 0
 

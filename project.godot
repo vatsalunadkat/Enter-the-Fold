@@ -23,16 +23,19 @@ buses/default_bus_layout="uid://cous8jjgpw6u2"
 
 GameState="*res://scripts/game_state.gd"
 GameConfig="*res://scripts/autoload/GameConfig.gd"
-UpgradeManager="*res://scripts/autoload/UpgradeManager.gd"
 SceneRouter="*res://scripts/autoload/SceneRouter.gd"
 SceneFader="*res://scenes/SceneFader.tscn"
+UpgradeManager="*res://scripts/autoload/UpgradeManager.gd"
 Music="*uid://c2i0wlmjyfx61"
+SaveManager="*res://scripts/autoload/SaveManager.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1080
+window/size/viewport_height=1920
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
 
 [input]
 
@@ -51,3 +54,4 @@ pause={
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

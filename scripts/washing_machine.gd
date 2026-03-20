@@ -8,7 +8,7 @@ var current_state = State.IDLE
 var _shake_tween: Tween
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var running_effect = $RunningEffect
+@onready var running_effect = $RunningEffect_wm
 @onready var done_indicator = $DoneIndicator
 
 func _ready() -> void:

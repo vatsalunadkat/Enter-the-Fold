@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dkhxv1o2p2xn8"]
 
-[ext_resource type="Script" uid="uid://dnfjh7yw70l4r" path="res://scenes/washing_machine.gd" id="1_1vf26"]
+[ext_resource type="Script" uid="uid://dnfjh7yw70l4r" path="res://scripts/washing_machine.gd" id="1_1vf26"]
 [ext_resource type="Texture2D" uid="uid://cn2m8l6ungmow" path="res://assets/washine_machine.png" id="1_se0gy"]
 [ext_resource type="Texture2D" uid="uid://dfyimd7dkvny" path="res://assets/drum.png" id="2_1vf26"]
-[ext_resource type="Script" uid="uid://ct6ll53nfrtfp" path="res://scenes/running_effect.gd" id="3_fckx4"]
+[ext_resource type="Script" uid="uid://0yc7pceap7wj" path="res://scenes/running_effect_wm.gd" id="4_1vf26"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rcvbw"]
 atlas = ExtResource("1_se0gy")
@@ -26,15 +26,15 @@ script = ExtResource("1_1vf26")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1899322448]
 position = Vector2(1.9999999, 0)
-scale = Vector2(1.5000011, 1.7656246)
+scale = Vector2(3, 3.532)
 sprite_frames = SubResource("SpriteFrames_ehu1f")
 animation = &"idle"
 
-[node name="RunningEffect" type="Sprite2D" parent="." unique_id=905546904]
+[node name="RunningEffect_wm" type="Sprite2D" parent="." unique_id=905546904]
 position = Vector2(10, -20)
-scale = Vector2(2.1250002, 2.4023435)
+scale = Vector2(4.25, 4.804)
 texture = ExtResource("2_1vf26")
-script = ExtResource("3_fckx4")
+script = ExtResource("4_1vf26")
 
 [node name="DoneIndicator" type="Label" parent="." unique_id=1337018672]
 modulate = Color(1, 0.33233353, 0.20016035, 1)

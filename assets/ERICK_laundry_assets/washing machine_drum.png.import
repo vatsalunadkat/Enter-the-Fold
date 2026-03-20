@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dipmfjpx3ur1a"
-path="res://.godot/imported/background.jpg-3c1ee7bbff6a1283595ccc69bb1d6acd.ctex"
+uid="uid://dwq32bfrr6q3y"
+path="res://.godot/imported/washing machine_drum.png-90b8dc368745f42eda5f84483a077eae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background.jpg"
-dest_files=["res://.godot/imported/background.jpg-3c1ee7bbff6a1283595ccc69bb1d6acd.ctex"]
+source_file="res://assets/ERICK_laundry_assets/washing machine_drum.png"
+dest_files=["res://.godot/imported/washing machine_drum.png-90b8dc368745f42eda5f84483a077eae.ctex"]
 
 [params]
 
