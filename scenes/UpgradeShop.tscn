@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dkm7p3x8s2y4n"]
 
 [ext_resource type="Script" path="res://scripts/ui/UpgradeShop.gd" id="1_shop"]
-[ext_resource type="Texture2D" uid="uid://b7w5vhd6873bh" path="res://assets/pb8s_s8g7_210608.jpg" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://bn32sufsv3ay0" path="res://assets/selectLevel_background.png" id="2_tto5d"]
 [ext_resource type="FontFile" uid="uid://bpw3njoo0k7xm" path="res://assets/Kingthings Trypewriter 2.ttf" id="3_font"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bg"]
-texture = ExtResource("2_bg")
+texture = ExtResource("2_tto5d")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.15, 0.12, 0.1, 0.95)
@@ -14,7 +14,7 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="UpgradeShop" type="Control"]
+[node name="UpgradeShop" type="Control" unique_id=1678890671]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_shop")
 
-[node name="Background" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="." unique_id=726391706]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,11 +32,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bg")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1803140867]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.6
 offset_left = 20.0
@@ -47,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
+[node name="VBox" type="VBoxContainer" parent="Panel" unique_id=1048002959]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,10 +58,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Header" type="HBoxContainer" parent="Panel/VBox"]
+[node name="Header" type="HBoxContainer" parent="Panel/VBox" unique_id=991876489]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="Panel/VBox/Header"]
+[node name="TitleLabel" type="Label" parent="Panel/VBox/Header" unique_id=547160146]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
@@ -71,25 +69,25 @@ theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 40
 text = "Upgrade Shop"
 
-[node name="MoneyLabel" type="Label" parent="Panel/VBox/Header"]
+[node name="MoneyLabel" type="Label" parent="Panel/VBox/Header" unique_id=330971195]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
 theme_override_font_sizes/font_size = 28
 text = "Balance: $0"
 horizontal_alignment = 2
 
-[node name="InfoLabel" type="Label" parent="Panel/VBox"]
+[node name="InfoLabel" type="Label" parent="Panel/VBox" unique_id=1469473542]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
 text = "Spend your earnings on upgrades before starting the next day!"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBox"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBox" unique_id=1798595536]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Grid" type="GridContainer" parent="Panel/VBox/ScrollContainer"]
+[node name="Grid" type="GridContainer" parent="Panel/VBox/ScrollContainer" unique_id=342712935]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -97,11 +95,12 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="Footer" type="HBoxContainer" parent="Panel/VBox"]
+[node name="Footer" type="HBoxContainer" parent="Panel/VBox" unique_id=1566439696]
 layout_mode = 2
 alignment = 2
 
-[node name="NextDayButton" type="Button" parent="Panel/VBox/Footer"]
+[node name="NextDayButton" type="Button" parent="Panel/VBox/Footer" unique_id=2122729082]
 custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Start Next Day →"
