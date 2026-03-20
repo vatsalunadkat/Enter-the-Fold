@@ -15,11 +15,11 @@ extends CanvasLayer
 
 func _ready() -> void:
 	day_over_panel.visible = false
-	menu_button.pressed.connect(_on_menu_button_pressed)
 
 	if shop_button:
 		shop_button.visible = false
-		shop_button.pressed.connect(_on_shop_pressed)
+		if not shop_button.pressed.is_connected(_on_shop_pressed):
+			shop_button.pressed.connect(_on_shop_pressed)
 
 	_update_day_label()
 
